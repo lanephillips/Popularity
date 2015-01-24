@@ -15,6 +15,8 @@
 		3D3FBB9E1A743052001B3852 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D3FBB9D1A743052001B3852 /* Images.xcassets */; };
 		3D3FBBA11A743052001B3852 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */; };
 		3D3FBBAD1A743052001B3852 /* PopularityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBAC1A743052001B3852 /* PopularityTests.m */; };
+		3D3FBBB91A743345001B3852 /* BusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBB81A743345001B3852 /* BusinessViewController.m */; };
+		3D3FBBBB1A7433F0001B3852 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBBBA1A7433F0001B3852 /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,9 @@
 		3D3FBBA61A743052001B3852 /* PopularityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopularityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3FBBAB1A743052001B3852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D3FBBAC1A743052001B3852 /* PopularityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopularityTests.m; sourceTree = "<group>"; };
+		3D3FBBB71A743345001B3852 /* BusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessViewController.h; sourceTree = "<group>"; };
+		3D3FBBB81A743345001B3852 /* BusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessViewController.m; sourceTree = "<group>"; };
+		3D3FBBBA1A7433F0001B3852 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3FBBBB1A7433F0001B3852 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +71,7 @@
 		3D3FBB811A743052001B3852 = {
 			isa = PBXGroup;
 			children = (
+				3D3FBBBA1A7433F0001B3852 /* MapKit.framework */,
 				3D3FBB8C1A743052001B3852 /* Popularity */,
 				3D3FBBA91A743052001B3852 /* PopularityTests */,
 				3D3FBB8B1A743052001B3852 /* Products */,
@@ -87,6 +94,8 @@
 				3D3FBB921A743052001B3852 /* AppDelegate.m */,
 				3D3FBB971A743052001B3852 /* ViewController.h */,
 				3D3FBB981A743052001B3852 /* ViewController.m */,
+				3D3FBBB71A743345001B3852 /* BusinessViewController.h */,
+				3D3FBBB81A743345001B3852 /* BusinessViewController.m */,
 				3D3FBB9A1A743052001B3852 /* Main.storyboard */,
 				3D3FBB9D1A743052001B3852 /* Images.xcassets */,
 				3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */,
@@ -244,6 +253,7 @@
 				3D3FBB901A743052001B3852 /* main.m in Sources */,
 				3D3FBB991A743052001B3852 /* ViewController.m in Sources */,
 				3D3FBB961A743052001B3852 /* Popularity.xcdatamodeld in Sources */,
+				3D3FBBB91A743345001B3852 /* BusinessViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

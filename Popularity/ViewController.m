@@ -24,4 +24,8 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)doCenter:(id)sender {
+    // TODO: get user's location
+}
+
 @end

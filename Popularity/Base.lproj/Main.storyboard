@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +15,54 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ben-0z-BlC">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MJH-ee-Goe">
+                                <rect key="frame" x="499" y="550" width="85" height="30"/>
+                                <state key="normal" title="My Location">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="doCenter:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="f9d-J9-Kzi"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ben-0z-BlC" secondAttribute="trailing" id="Hbg-8F-N1W"/>
+                            <constraint firstAttribute="trailing" secondItem="MJH-ee-Goe" secondAttribute="trailing" constant="16" id="JLB-tz-GMT"/>
+                            <constraint firstItem="ben-0z-BlC" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="-20" id="OoD-Za-h4K"/>
+                            <constraint firstItem="ben-0z-BlC" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="VPN-gH-yvs"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ben-0z-BlC" secondAttribute="bottom" id="Wqt-Fj-mJj"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="MJH-ee-Goe" secondAttribute="bottom" constant="20" id="lGP-gM-ioU"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <segue destination="3Hb-kx-gv4" kind="showDetail" identifier="showBusiness" id="KUu-3Z-dKw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Business View Controller-->
+        <scene sceneID="3KD-nh-5L7">
+            <objects>
+                <viewController id="3Hb-kx-gv4" customClass="BusinessViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="wCG-c8-UZ2"/>
+                        <viewControllerLayoutGuide type="bottom" id="ImX-wp-hUW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="x8R-iX-fm8">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LEX-v9-6Fa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1552" y="647"/>
         </scene>
     </scenes>
 </document>
