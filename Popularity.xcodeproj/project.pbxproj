@@ -17,6 +17,8 @@
 		3D3FBBAD1A743052001B3852 /* PopularityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBAC1A743052001B3852 /* PopularityTests.m */; };
 		3D3FBBB91A743345001B3852 /* BusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBB81A743345001B3852 /* BusinessViewController.m */; };
 		3D3FBBBB1A7433F0001B3852 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBBBA1A7433F0001B3852 /* MapKit.framework */; };
+		3D3FBBBE1A7436AC001B3852 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBBD1A7436AB001B3852 /* Business.m */; };
+		3D3FBBC11A7436AC001B3852 /* Hour.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBC01A7436AC001B3852 /* Hour.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,10 @@
 		3D3FBBB71A743345001B3852 /* BusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessViewController.h; sourceTree = "<group>"; };
 		3D3FBBB81A743345001B3852 /* BusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessViewController.m; sourceTree = "<group>"; };
 		3D3FBBBA1A7433F0001B3852 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		3D3FBBBC1A7436AB001B3852 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
+		3D3FBBBD1A7436AB001B3852 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
+		3D3FBBBF1A7436AC001B3852 /* Hour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hour.h; sourceTree = "<group>"; };
+		3D3FBBC01A7436AC001B3852 /* Hour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hour.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +106,10 @@
 				3D3FBB9D1A743052001B3852 /* Images.xcassets */,
 				3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */,
 				3D3FBB941A743052001B3852 /* Popularity.xcdatamodeld */,
+				3D3FBBBF1A7436AC001B3852 /* Hour.h */,
+				3D3FBBC01A7436AC001B3852 /* Hour.m */,
+				3D3FBBBC1A7436AB001B3852 /* Business.h */,
+				3D3FBBBD1A7436AB001B3852 /* Business.m */,
 				3D3FBB8D1A743052001B3852 /* Supporting Files */,
 			);
 			path = Popularity;
@@ -250,8 +260,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3FBB931A743052001B3852 /* AppDelegate.m in Sources */,
+				3D3FBBC11A7436AC001B3852 /* Hour.m in Sources */,
 				3D3FBB901A743052001B3852 /* main.m in Sources */,
 				3D3FBB991A743052001B3852 /* ViewController.m in Sources */,
+				3D3FBBBE1A7436AC001B3852 /* Business.m in Sources */,
 				3D3FBB961A743052001B3852 /* Popularity.xcdatamodeld in Sources */,
 				3D3FBBB91A743345001B3852 /* BusinessViewController.m in Sources */,
 			);
