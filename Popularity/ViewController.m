@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "Foursquare.h"
 @import CoreLocation;
 @import MapKit;
 
@@ -82,7 +83,10 @@
     if (abs(howRecent) < 15.0) {
         [self.locationManager stopUpdatingLocation];
         
-        // TODO: query businesses
+        [[Foursquare shared] getVenuesNear:location.coordinate radius:500 completion:^(NSArray *venues) {
+            // TODO: put on map
+            NSLog(@"%@", venues);
+        }];
     }
 }
 
