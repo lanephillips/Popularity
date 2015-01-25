@@ -8,8 +8,13 @@
 
 #import "ViewController.h"
 #import "Foursquare.h"
+#import "Venue.h"
 @import CoreLocation;
 @import MapKit;
+
+@interface Venue (MapKit) <MKAnnotation>
+
+@end
 
 @interface ViewController ()
 <CLLocationManagerDelegate>
@@ -85,9 +90,11 @@
         
         [[Foursquare shared] getVenuesInRegion:adjustedRegion completion:^(NSArray *venues) {
             // TODO: put on map
-            NSLog(@"%@", venues);
+            //NSLog(@"%@", venues);
             
-            
+            for (Venue* v in venues) {
+                [self.map addAnnotation:v];
+            }
         }];
     }
 }
@@ -95,6 +102,18 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%@", error);
     [self.locationManager stopUpdatingLocation];
+}
+
+@end
+
+@implementation Venue (MapKit)
+
+- (CLLocationCoordinate2D)coordinate {
+    return CLLocationCoordinate2DMake(self.latitude.doubleValue, self.longitude.doubleValue);
+}
+
+- (NSString *)title {
+    return self.name;
 }
 
 @end
