@@ -40,6 +40,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="map" destination="ben-0z-BlC" id="nYd-dP-FaD"/>
                         <segue destination="3Hb-kx-gv4" kind="showDetail" identifier="showBusiness" id="KUu-3Z-dKw"/>
                     </connections>
                 </viewController>
