@@ -6,12 +6,13 @@
 //  Copyright (c) 2015 Milk LLC. All rights reserved.
 //
 
-#import "Business.h"
+#import "Venue.h"
 
 
-@implementation Business
+@implementation Venue
 
 @dynamic name;
+@dynamic foursquareId;
 @dynamic latitude;
 @dynamic longitude;
 @dynamic checkins;

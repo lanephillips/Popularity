@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class Business;
+@class Venue;
 
 @interface Hour : NSManagedObject
 
@@ -18,6 +18,6 @@
 @property (nonatomic, retain) NSNumber * twitter;
 @property (nonatomic, retain) NSNumber * swarm;
 @property (nonatomic, retain) NSNumber * yelp;
-@property (nonatomic, retain) Business *business;
+@property (nonatomic, retain) Venue *business;
 
 @end

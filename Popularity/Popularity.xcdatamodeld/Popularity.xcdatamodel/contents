@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Business" representedClassName="Business" syncable="YES">
-        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <attribute name="name" attributeType="String" syncable="YES"/>
-        <relationship name="checkins" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Hour" inverseName="business" inverseEntity="Hour" syncable="YES"/>
-    </entity>
     <entity name="Hour" representedClassName="Hour" syncable="YES">
         <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="facebook" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="swarm" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="twitter" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="yelp" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="business" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Business" inverseName="checkins" inverseEntity="Business" syncable="YES"/>
+        <relationship name="venue" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="checkins" inverseEntity="Venue" syncable="YES"/>
+    </entity>
+    <entity name="Venue" representedClassName="Venue" syncable="YES">
+        <attribute name="foursquareId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
+        <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <relationship name="checkins" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Hour" inverseName="venue" inverseEntity="Hour" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Business" positionX="-63" positionY="-18" width="128" height="103"/>
-        <element name="Hour" positionX="-54" positionY="-9" width="128" height="133"/>
+        <element name="Hour" positionX="0" positionY="0" width="128" height="135"/>
+        <element name="Venue" positionX="0" positionY="0" width="128" height="118"/>
     </elements>
 </model>

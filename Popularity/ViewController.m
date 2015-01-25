@@ -83,9 +83,11 @@
     if (abs(howRecent) < 15.0) {
         [self.locationManager stopUpdatingLocation];
         
-        [[Foursquare shared] getVenuesNear:location.coordinate radius:500 completion:^(NSArray *venues) {
+        [[Foursquare shared] getVenuesInRegion:adjustedRegion completion:^(NSArray *venues) {
             // TODO: put on map
             NSLog(@"%@", venues);
+            
+            
         }];
     }
 }

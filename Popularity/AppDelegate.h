@@ -23,3 +23,4 @@
 
 @end
 
+#define APP ((AppDelegate*)[UIApplication sharedApplication].delegate)

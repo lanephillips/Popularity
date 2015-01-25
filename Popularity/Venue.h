@@ -10,15 +10,17 @@
 #import <CoreData/CoreData.h>
 
 
-@interface Business : NSManagedObject
+@interface Venue : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+@property (nonatomic, retain) NSString * foursquareId;
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
 @property (nonatomic, retain) NSOrderedSet *checkins;
+
 @end
 
-@interface Business (CoreDataGeneratedAccessors)
+@interface Venue (CoreDataGeneratedAccessors)
 
 - (void)insertObject:(NSManagedObject *)value inCheckinsAtIndex:(NSUInteger)idx;
 - (void)removeObjectFromCheckinsAtIndex:(NSUInteger)idx;
@@ -30,4 +32,5 @@
 - (void)removeCheckinsObject:(NSManagedObject *)value;
 - (void)addCheckins:(NSOrderedSet *)values;
 - (void)removeCheckins:(NSOrderedSet *)values;
+
 @end

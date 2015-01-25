@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-@import CoreLocation;
+@import MapKit;
 
 @interface Foursquare : NSObject
 
 + (instancetype)shared;
 
-- (void)getVenuesNear:(CLLocationCoordinate2D)ll radius:(float)radius completion:(void(^)(NSArray* venues))completion;
+- (void)getVenuesInRegion:(MKCoordinateRegion)region completion:(void(^)(NSArray* venues))completion;
 
 @end

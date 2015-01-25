@@ -7,7 +7,7 @@
 //
 
 #import "Hour.h"
-#import "Business.h"
+#import "Venue.h"
 
 
 @implementation Hour

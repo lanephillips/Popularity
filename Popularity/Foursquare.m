@@ -7,6 +7,9 @@
 //
 
 #import "Foursquare.h"
+#import "Venue.h"
+// TODO: I'm not liking this coupling here
+#import "AppDelegate.h"
 
 static const NSString* ClientID = @"1IDYJHMTUEP5TKNHXP2HXQYIIDVAM1FLW0SG5MH3O3WD3D5T";
 static const NSString* ClientSecret = @"HX1LI1TBA3T0LIWHYNLVRPVMCSUJWVH4JD3MVRPW1LGEBQ3U";
@@ -24,11 +27,13 @@ static const NSString* ClientSecret = @"HX1LI1TBA3T0LIWHYNLVRPVMCSUJWVH4JD3MVRPW
     return f;
 }
 
-// TODO: intent=browse ? radius?
-- (void)getVenuesNear:(CLLocationCoordinate2D)ll radius:(float)radius completion:(void (^)(NSArray *))completion {
+- (void)getVenuesInRegion:(MKCoordinateRegion)region completion:(void (^)(NSArray *))completion {
     NSString* urlStr = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search"
-                        "?client_id=%@&client_secret=%@&ll=%f,%f&v=20150124", ClientID, ClientSecret,
-                        ll.latitude, ll.longitude];
+                        "?client_id=%@&client_secret=%@&ne=%f,%f&sw=%f,%f&intent=browse&v=20150124", ClientID, ClientSecret,
+                        region.center.latitude + region.span.latitudeDelta / 2,
+                        region.center.longitude + region.span.longitudeDelta / 2,
+                        region.center.latitude - region.span.latitudeDelta / 2,
+                        region.center.longitude - region.span.longitudeDelta / 2];
     
     NSURLSessionDataTask* task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlStr]
                                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
@@ -51,10 +56,38 @@ static const NSString* ClientSecret = @"HX1LI1TBA3T0LIWHYNLVRPVMCSUJWVH4JD3MVRPW
                                       }
                                       
                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                          completion(venues);
+                                          NSMutableArray* ven2 = [NSMutableArray arrayWithCapacity:venues.count];
+                                          for (NSDictionary* dict in venues) {
+                                              [ven2 addObject:[self findOrAddVenue:dict]];
+                                          }
+                                          completion(ven2);
                                       });
                                   }];
     [task resume];
+}
+
+- (Venue*)findOrAddVenue:(NSDictionary*)venue {
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Venue"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"foursquareId LIKE %@", venue[@"id"]];
+    
+    NSError* err = nil;
+    NSArray* a = [APP.managedObjectContext executeFetchRequest:fr error:&err];
+    if (err) {
+        NSLog(@"%@", err);
+    }
+    
+    Venue* v = a.firstObject;
+    if (!v) {
+        NSEntityDescription* ed = [NSEntityDescription entityForName:@"Venue" inManagedObjectContext:APP.managedObjectContext];
+        v = [[Venue alloc] initWithEntity:ed insertIntoManagedObjectContext:APP.managedObjectContext];
+    }
+    
+    v.foursquareId = venue[@"id"];
+    v.name = venue[@"name"];
+    v.latitude = @([venue[@"location"][@"lat"] doubleValue]);
+    v.longitude = @([venue[@"location"][@"lng"] doubleValue]);
+    
+    return v;
 }
 
 @end
