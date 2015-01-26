@@ -17,7 +17,7 @@
 @end
 
 @interface ViewController ()
-<CLLocationManagerDelegate>
+<CLLocationManagerDelegate, MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (nonatomic) CLLocationManager* locationManager;
@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.map.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,32 +77,35 @@
     
     // TODO: save last map location for startup next time
     
-    // go ahead and update the map
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500);
-    MKCoordinateRegion adjustedRegion = [self.map regionThatFits:viewRegion];
-    self.map.showsUserLocation = YES;
-    [self.map setRegion:adjustedRegion animated:YES];
-    
-    // but wait until we have a fresh result to run the query
+    // wait until we have a fresh result to update the map
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
     if (abs(howRecent) < 15.0) {
         [self.locationManager stopUpdatingLocation];
         
-        [[Foursquare shared] getVenuesInRegion:adjustedRegion completion:^(NSArray *venues) {
-            // TODO: put on map
-            //NSLog(@"%@", venues);
-            
-            for (Venue* v in venues) {
-                [self.map addAnnotation:v];
-            }
-        }];
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(location.coordinate, 500, 500);
+        MKCoordinateRegion adjustedRegion = [self.map regionThatFits:viewRegion];
+        self.map.showsUserLocation = YES;
+        [self.map setRegion:adjustedRegion animated:YES];
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
     NSLog(@"%@", error);
     [self.locationManager stopUpdatingLocation];
+}
+
+#pragma mark - map view delegate
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
+        // TODO: put on map
+        //NSLog(@"%@", venues);
+        
+        for (Venue* v in venues) {
+            [self.map addAnnotation:v];
+        }
+    }];
 }
 
 @end
