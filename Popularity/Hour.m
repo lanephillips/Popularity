@@ -15,7 +15,7 @@
 @dynamic date;
 @dynamic facebook;
 @dynamic twitter;
-@dynamic swarm;
+@dynamic foursquare;
 @dynamic yelp;
 @dynamic business;
 

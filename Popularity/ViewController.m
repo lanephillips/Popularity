@@ -144,4 +144,8 @@
     return self.name;
 }
 
+- (NSString *)subtitle {
+    return [NSString stringWithFormat:@"%@ checkins", self.currentFoursquare];
+}
+
 @end

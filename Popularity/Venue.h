@@ -13,9 +13,14 @@
 @interface Venue : NSManagedObject
 
 @property (nonatomic, retain) NSString * name;
+
 @property (nonatomic, retain) NSString * foursquareId;
+
+@property (nonatomic, retain) NSNumber * currentFoursquare;
+
 @property (nonatomic, retain) NSNumber * latitude;
 @property (nonatomic, retain) NSNumber * longitude;
+
 @property (nonatomic, retain) NSOrderedSet *checkins;
 
 @end

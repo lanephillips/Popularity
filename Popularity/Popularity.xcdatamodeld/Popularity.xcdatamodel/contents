@@ -3,12 +3,13 @@
     <entity name="Hour" representedClassName="Hour" syncable="YES">
         <attribute name="date" attributeType="Date" indexed="YES" syncable="YES"/>
         <attribute name="facebook" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="swarm" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="foursquare" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="twitter" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="yelp" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="venue" maxCount="1" deletionRule="Nullify" destinationEntity="Venue" inverseName="checkins" inverseEntity="Venue" syncable="YES"/>
     </entity>
     <entity name="Venue" representedClassName="Venue" syncable="YES">
+        <attribute name="currentFoursquare" attributeType="Integer 32" defaultValueString="-1" syncable="YES"/>
         <attribute name="foursquareId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
         <attribute name="latitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -16,7 +17,7 @@
         <relationship name="checkins" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Hour" inverseName="venue" inverseEntity="Hour" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Hour" positionX="0" positionY="0" width="128" height="135"/>
-        <element name="Venue" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="Hour" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="Venue" positionX="0" positionY="0" width="128" height="133"/>
     </elements>
 </model>

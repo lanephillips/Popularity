@@ -86,6 +86,7 @@ static const NSString* ClientSecret = @"HX1LI1TBA3T0LIWHYNLVRPVMCSUJWVH4JD3MVRPW
     v.name = venue[@"name"];
     v.latitude = @([venue[@"location"][@"lat"] doubleValue]);
     v.longitude = @([venue[@"location"][@"lng"] doubleValue]);
+    v.currentFoursquare = @([venue[@"hereNow"][@"count"] integerValue]);
     
     return v;
 }

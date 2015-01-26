@@ -16,7 +16,7 @@
 @property (nonatomic, retain) NSDate * date;
 @property (nonatomic, retain) NSNumber * facebook;
 @property (nonatomic, retain) NSNumber * twitter;
-@property (nonatomic, retain) NSNumber * swarm;
+@property (nonatomic, retain) NSNumber * foursquare;
 @property (nonatomic, retain) NSNumber * yelp;
 @property (nonatomic, retain) Venue *business;
 

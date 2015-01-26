@@ -11,6 +11,7 @@
 @interface VenueViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *venueLbl;
+@property (weak, nonatomic) IBOutlet UILabel *checkinLbl;
 
 @end
 
@@ -25,6 +26,7 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     self.venueLbl.text = self.venue.name;
+    self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
 }
 
 - (void)didReceiveMemoryWarning {
