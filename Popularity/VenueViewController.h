@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Venue.h"
 
-@interface BusinessViewController : UIViewController
+@interface VenueViewController : UIViewController
+
+@property (nonatomic) Venue* venue;
 
 @end

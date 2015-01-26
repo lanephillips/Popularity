@@ -9,6 +9,7 @@
 #import "ViewController.h"
 #import "Foursquare.h"
 #import "Venue.h"
+#import "VenueViewController.h"
 @import CoreLocation;
 @import MapKit;
 
@@ -35,6 +36,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"showVenue"]) {
+        ((VenueViewController*)segue.destinationViewController).venue = (Venue*)self.map.selectedAnnotations.firstObject;
+    }
 }
 
 - (IBAction)doCenter:(id)sender {
@@ -106,6 +113,18 @@
             [self.map addAnnotation:v];
         }
     }];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+    if (!view.rightCalloutAccessoryView) {
+        view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
+    Venue* venue = (Venue*)view.annotation;
+    NSLog(@"%@", venue);
+    [self performSegueWithIdentifier:@"showVenue" sender:self];
 }
 
 @end

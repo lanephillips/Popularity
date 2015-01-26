@@ -41,16 +41,16 @@
                     </view>
                     <connections>
                         <outlet property="map" destination="ben-0z-BlC" id="nYd-dP-FaD"/>
-                        <segue destination="3Hb-kx-gv4" kind="showDetail" identifier="showBusiness" id="KUu-3Z-dKw"/>
+                        <segue destination="3Hb-kx-gv4" kind="showDetail" identifier="showVenue" id="KUu-3Z-dKw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Business View Controller-->
+        <!--Venue View Controller-->
         <scene sceneID="3KD-nh-5L7">
             <objects>
-                <viewController id="3Hb-kx-gv4" customClass="BusinessViewController" sceneMemberID="viewController">
+                <viewController id="3Hb-kx-gv4" customClass="VenueViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="wCG-c8-UZ2"/>
                         <viewControllerLayoutGuide type="bottom" id="ImX-wp-hUW"/>
@@ -58,8 +58,23 @@
                     <view key="view" contentMode="scaleToFill" id="x8R-iX-fm8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fW0-kC-iI2">
+                                <rect key="frame" x="16" y="20" width="104" height="47"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="39"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="fW0-kC-iI2" firstAttribute="top" secondItem="wCG-c8-UZ2" secondAttribute="bottom" id="dy0-0o-vDk"/>
+                            <constraint firstItem="fW0-kC-iI2" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="kg4-0u-2v3"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="venueLbl" destination="fW0-kC-iI2" id="GK1-13-g3n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LEX-v9-6Fa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

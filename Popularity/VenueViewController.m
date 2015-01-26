@@ -6,17 +6,24 @@
 //  Copyright (c) 2015 Milk LLC. All rights reserved.
 //
 
-#import "BusinessViewController.h"
+#import "VenueViewController.h"
 
-@interface BusinessViewController ()
+@interface VenueViewController ()
+
+@property (weak, nonatomic) IBOutlet UILabel *venueLbl;
 
 @end
 
-@implementation BusinessViewController
+@implementation VenueViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.venueLbl.text = self.venue.name;
 }
 
 - (void)didReceiveMemoryWarning {

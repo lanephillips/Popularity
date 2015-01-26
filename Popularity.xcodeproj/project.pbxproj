@@ -15,7 +15,7 @@
 		3D3FBB9E1A743052001B3852 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D3FBB9D1A743052001B3852 /* Images.xcassets */; };
 		3D3FBBA11A743052001B3852 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */; };
 		3D3FBBAD1A743052001B3852 /* PopularityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBAC1A743052001B3852 /* PopularityTests.m */; };
-		3D3FBBB91A743345001B3852 /* BusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBB81A743345001B3852 /* BusinessViewController.m */; };
+		3D3FBBB91A743345001B3852 /* VenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBB81A743345001B3852 /* VenueViewController.m */; };
 		3D3FBBBB1A7433F0001B3852 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBBBA1A7433F0001B3852 /* MapKit.framework */; };
 		3D3FBBBE1A7436AC001B3852 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBBD1A7436AB001B3852 /* Venue.m */; };
 		3D3FBBC11A7436AC001B3852 /* Hour.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBC01A7436AC001B3852 /* Hour.m */; };
@@ -47,8 +47,8 @@
 		3D3FBBA61A743052001B3852 /* PopularityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PopularityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D3FBBAB1A743052001B3852 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3D3FBBAC1A743052001B3852 /* PopularityTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PopularityTests.m; sourceTree = "<group>"; };
-		3D3FBBB71A743345001B3852 /* BusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BusinessViewController.h; sourceTree = "<group>"; };
-		3D3FBBB81A743345001B3852 /* BusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BusinessViewController.m; sourceTree = "<group>"; };
+		3D3FBBB71A743345001B3852 /* VenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueViewController.h; sourceTree = "<group>"; };
+		3D3FBBB81A743345001B3852 /* VenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueViewController.m; sourceTree = "<group>"; };
 		3D3FBBBA1A7433F0001B3852 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		3D3FBBBC1A7436AB001B3852 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		3D3FBBBD1A7436AB001B3852 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
@@ -105,8 +105,8 @@
 				3D3FBB981A743052001B3852 /* ViewController.m */,
 				3D3FBBC21A74AC76001B3852 /* Foursquare.h */,
 				3D3FBBC31A74AC76001B3852 /* Foursquare.m */,
-				3D3FBBB71A743345001B3852 /* BusinessViewController.h */,
-				3D3FBBB81A743345001B3852 /* BusinessViewController.m */,
+				3D3FBBB71A743345001B3852 /* VenueViewController.h */,
+				3D3FBBB81A743345001B3852 /* VenueViewController.m */,
 				3D3FBB9A1A743052001B3852 /* Main.storyboard */,
 				3D3FBB9D1A743052001B3852 /* Images.xcassets */,
 				3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */,
@@ -271,7 +271,7 @@
 				3D3FBBC41A74AC76001B3852 /* Foursquare.m in Sources */,
 				3D3FBBBE1A7436AC001B3852 /* Venue.m in Sources */,
 				3D3FBB961A743052001B3852 /* Popularity.xcdatamodeld in Sources */,
-				3D3FBBB91A743345001B3852 /* BusinessViewController.m in Sources */,
+				3D3FBBB91A743345001B3852 /* VenueViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
