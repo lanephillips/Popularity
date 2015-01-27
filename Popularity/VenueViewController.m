@@ -7,6 +7,8 @@
 //
 
 #import "VenueViewController.h"
+#import <TwitterKit/TwitterKit.h>
+#import "AppDelegate.h"
 
 @interface VenueViewController ()
 
@@ -27,6 +29,41 @@
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     self.venueLbl.text = self.venue.name;
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
+    
+    if (APP.twitterSession) {
+        NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/statuses/show.json";
+        NSDictionary *params = @{@"id" : @"20"};
+        NSError *clientError;
+        NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
+                                 URLRequestWithMethod:@"GET"
+                                 URL:statusesShowEndpoint
+                                 parameters:params
+                                 error:&clientError];
+        
+        if (request) {
+            [[[Twitter sharedInstance] APIClient]
+             sendTwitterRequest:request
+             completion:^(NSURLResponse *response,
+                          NSData *data,
+                          NSError *connectionError) {
+                 if (data) {
+                     // handle the response data e.g.
+                     NSError *jsonError;
+                     NSDictionary *json = [NSJSONSerialization
+                                           JSONObjectWithData:data
+                                           options:0
+                                           error:&jsonError];
+                     NSLog(@"%@", json);
+                 }
+                 else {
+                     NSLog(@"Error: %@", connectionError);
+                 }
+             }];
+        }
+        else {
+            NSLog(@"Error: %@", clientError);
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

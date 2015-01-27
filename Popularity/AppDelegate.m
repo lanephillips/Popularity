@@ -7,9 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import <Fabric/Fabric.h>
-#import <TwitterKit/TwitterKit.h>
-#import <Crashlytics/Crashlytics.h>
 
 @interface AppDelegate ()
 
@@ -40,6 +37,16 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    [[Twitter sharedInstance] logInGuestWithCompletion:^
+     (TWTRGuestSession *session, NSError *error) {
+         if (session) {
+             self.twitterSession = session;
+             // make API calls that do not require user auth
+         } else {
+             NSLog(@"error: %@", [error localizedDescription]);
+             self.twitterSession = nil;
+         }
+     }];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application {
