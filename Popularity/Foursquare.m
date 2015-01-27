@@ -28,6 +28,7 @@ static const NSString* ClientSecret = @"HX1LI1TBA3T0LIWHYNLVRPVMCSUJWVH4JD3MVRPW
 }
 
 - (void)getVenuesInRegion:(MKCoordinateRegion)region completion:(void (^)(NSArray *))completion {
+    // TODO: could narrow categories
     NSString* urlStr = [NSString stringWithFormat:@"https://api.foursquare.com/v2/venues/search"
                         "?client_id=%@&client_secret=%@&ne=%f,%f&sw=%f,%f&intent=browse&v=20150124", ClientID, ClientSecret,
                         region.center.latitude + region.span.latitudeDelta / 2,

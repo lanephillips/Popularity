@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "Foursquare.h"
+#import "Yelp.h"
 #import "Venue.h"
 #import "VenueViewController.h"
 @import CoreLocation;
@@ -110,7 +111,8 @@
 #pragma mark - map view delegate
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-    [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
+//    [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
+    [[Yelp shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
         // TODO: put on map
         //NSLog(@"%@", venues);
         
