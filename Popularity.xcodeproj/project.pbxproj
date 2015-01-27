@@ -39,6 +39,10 @@
 		3D3FBBFE1A783462001B3852 /* OAToken.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBEB1A783462001B3852 /* OAToken.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D3FBBFF1A783462001B3852 /* OATokenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBED1A783462001B3852 /* OATokenManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3D3FBC021A7834DB001B3852 /* NSURLRequest+OAuth.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBC011A7834DB001B3852 /* NSURLRequest+OAuth.m */; };
+		3D3FBC071A78456F001B3852 /* TwitterKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBC041A78456F001B3852 /* TwitterKit.framework */; };
+		3D3FBC081A78456F001B3852 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3D3FBC051A78456F001B3852 /* TwitterKitResources.bundle */; };
+		3D3FBC091A78456F001B3852 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBC061A78456F001B3852 /* Fabric.framework */; };
+		3D3FBC0B1A784682001B3852 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBC0A1A784682001B3852 /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -115,6 +119,10 @@
 		3D3FBBEE1A783462001B3852 /* OAuthConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthConsumer.h; sourceTree = "<group>"; };
 		3D3FBC001A7834DB001B3852 /* NSURLRequest+OAuth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+OAuth.h"; sourceTree = "<group>"; };
 		3D3FBC011A7834DB001B3852 /* NSURLRequest+OAuth.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+OAuth.m"; sourceTree = "<group>"; };
+		3D3FBC041A78456F001B3852 /* TwitterKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TwitterKit.framework; sourceTree = "<group>"; };
+		3D3FBC051A78456F001B3852 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = TwitterKitResources.bundle; path = TwitterKit.framework/Versions/A/Resources/TwitterKitResources.bundle; sourceTree = "<group>"; };
+		3D3FBC061A78456F001B3852 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		3D3FBC0A1A784682001B3852 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +131,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				3D3FBBBB1A7433F0001B3852 /* MapKit.framework in Frameworks */,
+				3D3FBC071A78456F001B3852 /* TwitterKit.framework in Frameworks */,
+				3D3FBC0B1A784682001B3852 /* Crashlytics.framework in Frameworks */,
+				3D3FBC091A78456F001B3852 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,8 +150,8 @@
 		3D3FBB811A743052001B3852 = {
 			isa = PBXGroup;
 			children = (
-				3D3FBBBA1A7433F0001B3852 /* MapKit.framework */,
 				3D3FBB8C1A743052001B3852 /* Popularity */,
+				3D3FBC0C1A7846D6001B3852 /* Frameworks */,
 				3D3FBBA91A743052001B3852 /* PopularityTests */,
 				3D3FBB8B1A743052001B3852 /* Products */,
 			);
@@ -269,6 +280,18 @@
 			path = Crytpo;
 			sourceTree = "<group>";
 		};
+		3D3FBC0C1A7846D6001B3852 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3D3FBBBA1A7433F0001B3852 /* MapKit.framework */,
+				3D3FBC0A1A784682001B3852 /* Crashlytics.framework */,
+				3D3FBC041A78456F001B3852 /* TwitterKit.framework */,
+				3D3FBC051A78456F001B3852 /* TwitterKitResources.bundle */,
+				3D3FBC061A78456F001B3852 /* Fabric.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -280,6 +303,7 @@
 				3D3FBB871A743052001B3852 /* Frameworks */,
 				3D3FBB881A743052001B3852 /* Resources */,
 				3D3FBBB61A743122001B3852 /* Bump Build Number */,
+				3D3FBC031A784539001B3852 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -350,6 +374,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D3FBC081A78456F001B3852 /* TwitterKitResources.bundle in Resources */,
 				3D3FBB9C1A743052001B3852 /* Main.storyboard in Resources */,
 				3D3FBBA11A743052001B3852 /* LaunchScreen.xib in Resources */,
 				3D3FBB9E1A743052001B3852 /* Images.xcassets in Resources */,
@@ -379,6 +404,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "#\n# Set the build number to the current git commit count.\n# If we're using the Dev scheme, then we'll suffix the build\n# number with the current branch name, to make collisions\n# far less likely across feature branches.\n# Based on: http://w3facility.info/question/how-do-i-force-xcode-to-rebuild-the-info-plist-file-in-my-project-every-time-i-build-the-project/\n#\ngit=`sh /etc/profile; which git`\nappBuild=`\"$git\" rev-list --all |wc -l`\nif [ $CONFIGURATION = \"Debug\" ]; then\nbranchName=`\"$git\" rev-parse --abbrev-ref HEAD`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild-$branchName\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nelse\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $appBuild\" \"${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"\nfi\necho \"Updated ${TARGET_BUILD_DIR}/${INFOPLIST_PATH}\"";
+		};
+		3D3FBC031A784539001B3852 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 0fcac72f0c942dac364ab6d01ee759c134f05740 392daf7f9093308e1872bed7c018db876965463ec134afebfcd056baeec3892e";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -535,6 +573,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Popularity/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -545,6 +587,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = Popularity/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

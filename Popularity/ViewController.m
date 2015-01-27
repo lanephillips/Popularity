@@ -11,6 +11,7 @@
 #import "Yelp.h"
 #import "Venue.h"
 #import "VenueViewController.h"
+#import <TwitterKit/TwitterKit.h>
 @import CoreLocation;
 @import MapKit;
 
@@ -32,6 +33,13 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.map.delegate = self;
+
+    // TODO: Twitter login?
+//    TWTRLogInButton *logInButton = [TWTRLogInButton buttonWithLogInCompletion:^(TWTRSession *session, NSError *error) {
+//        // play with Twitter session
+//    }];
+//    logInButton.center = self.view.center;
+//    [self.view addSubview:logInButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
