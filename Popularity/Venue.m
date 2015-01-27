@@ -13,6 +13,7 @@
 
 @dynamic name;
 @dynamic foursquareId;
+@dynamic yelpId;
 @dynamic currentFoursquare;
 @dynamic latitude;
 @dynamic longitude;

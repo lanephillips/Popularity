@@ -113,9 +113,6 @@
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
 //    [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
     [[Yelp shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
-        // TODO: put on map
-        //NSLog(@"%@", venues);
-        
         for (Venue* v in venues) {
             [self.map addAnnotation:v];
         }

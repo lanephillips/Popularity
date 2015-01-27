@@ -15,6 +15,7 @@
 @property (nonatomic, retain) NSString * name;
 
 @property (nonatomic, retain) NSString * foursquareId;
+@property (nonatomic, retain) NSString * yelpId;
 
 @property (nonatomic, retain) NSNumber * currentFoursquare;
 
