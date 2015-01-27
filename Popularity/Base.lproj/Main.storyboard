@@ -89,10 +89,21 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw9-bp-Ck9">
+                                <rect key="frame" x="16" y="156" width="568" height="424"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Gw9-bp-Ck9" secondAttribute="trailing" constant="16" id="3Oy-hl-iFm"/>
                             <constraint firstItem="DML-g4-Ctg" firstAttribute="top" secondItem="fW0-kC-iI2" secondAttribute="bottom" constant="8" id="5wL-Ub-enb"/>
+                            <constraint firstItem="Gw9-bp-Ck9" firstAttribute="top" secondItem="DML-g4-Ctg" secondAttribute="bottom" constant="8" id="Aun-1L-vCZ"/>
+                            <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" constant="20" id="DWv-hn-gUk"/>
+                            <constraint firstItem="Gw9-bp-Ck9" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="FMW-y5-2dF"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="h1G-Si-X32"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="leading" secondItem="DML-g4-Ctg" secondAttribute="leading" id="kba-Ri-zlV"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="top" secondItem="wCG-c8-UZ2" secondAttribute="bottom" constant="8" id="zI0-kO-9Ah"/>
@@ -100,6 +111,7 @@
                     </view>
                     <connections>
                         <outlet property="checkinLbl" destination="DML-g4-Ctg" id="c4x-5n-wLJ"/>
+                        <outlet property="debugTextView" destination="Gw9-bp-Ck9" id="05c-Sq-mLm"/>
                         <outlet property="venueLbl" destination="fW0-kC-iI2" id="GK1-13-g3n"/>
                     </connections>
                 </viewController>

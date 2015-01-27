@@ -14,6 +14,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *venueLbl;
 @property (weak, nonatomic) IBOutlet UILabel *checkinLbl;
+@property (weak, nonatomic) IBOutlet UITextView *debugTextView;
 
 @end
 
@@ -30,9 +31,15 @@
     self.venueLbl.text = self.venue.name;
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
+    self.debugTextView.text = @"";
     if (APP.twitterSession) {
-        NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/statuses/show.json";
-        NSDictionary *params = @{@"id" : @"20"};
+        NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json";
+        NSDictionary *params = @{
+                                 @"q": self.venue.name,
+                                 @"geocode": [NSString stringWithFormat:@"%@,%@,1km", self.venue.latitude, self.venue.longitude],
+                                 @"result_type": @"recent",
+                                 @"count": @"100"
+                                 };
         NSError *clientError;
         NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
                                  URLRequestWithMethod:@"GET"
@@ -53,7 +60,18 @@
                                            JSONObjectWithData:data
                                            options:0
                                            error:&jsonError];
-                     NSLog(@"%@", json);
+                     if (!jsonError) {
+                         NSLog(@"%@", json);
+                         
+                         NSMutableString* s = [NSMutableString string];
+                         for (NSDictionary* tweet in json[@"statuses"]) {
+                             [s appendFormat:@"%@\n", tweet[@"text"]];
+                         }
+                         self.debugTextView.text = s;
+                     }
+                     else {
+                         NSLog(@"Error: %@", jsonError);
+                     }
                  }
                  else {
                      NSLog(@"Error: %@", connectionError);
