@@ -7,8 +7,8 @@
 //
 
 #import "VenueViewController.h"
-#import <TwitterKit/TwitterKit.h>
 #import "AppDelegate.h"
+#import "PTwitter.h"
 
 @interface VenueViewController ()
 
@@ -32,71 +32,18 @@
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
     self.debugTextView.text = @"";
-    if (APP.twitterSession) {
-        NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json";
-        NSDictionary *params = @{
-                                 @"q": self.venue.name,
-                                 @"geocode": [NSString stringWithFormat:@"%@,%@,1km", self.venue.latitude, self.venue.longitude],
-                                 @"result_type": @"recent",
-                                 @"count": @"100"
-                                 };
-        NSError *clientError;
-        NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
-                                 URLRequestWithMethod:@"GET"
-                                 URL:statusesShowEndpoint
-                                 parameters:params
-                                 error:&clientError];
-        
-        if (request) {
-            [[[Twitter sharedInstance] APIClient]
-             sendTwitterRequest:request
-             completion:^(NSURLResponse *response,
-                          NSData *data,
-                          NSError *connectionError) {
-                 if (data) {
-                     // handle the response data e.g.
-                     NSError *jsonError;
-                     NSDictionary *json = [NSJSONSerialization
-                                           JSONObjectWithData:data
-                                           options:0
-                                           error:&jsonError];
-                     if (!jsonError) {
-                         NSLog(@"%@", json);
-                         
-                         NSMutableString* s = [NSMutableString string];
-                         for (NSDictionary* tweet in json[@"statuses"]) {
-                             [s appendFormat:@"%@\n", tweet[@"text"]];
-                         }
-                         self.debugTextView.text = s;
-                     }
-                     else {
-                         NSLog(@"Error: %@", jsonError);
-                     }
-                 }
-                 else {
-                     NSLog(@"Error: %@", connectionError);
-                 }
-             }];
+    [[PTwitter shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
+        NSMutableString* s = [NSMutableString string];
+        for (NSDictionary* tweet in posts) {
+            [s appendFormat:@"%@\n", tweet[@"text"]];
         }
-        else {
-            NSLog(@"Error: %@", clientError);
-        }
-    }
+        self.debugTextView.text = s;
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
