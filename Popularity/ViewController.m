@@ -119,12 +119,34 @@
 #pragma mark - map view delegate
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
-//    [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
+    [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
+        for (Venue* v in venues) {
+            [self.map addAnnotation:v];
+        }
+    }];
     [[Yelp shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
         for (Venue* v in venues) {
             [self.map addAnnotation:v];
         }
     }];
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation {
+    if (![annotation isKindOfClass:[Venue class]]) {
+        return nil;
+    }
+    
+    MKPinAnnotationView *annView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"Pin"];
+    if (annView == nil) {
+        annView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"Pin"];
+        annView.canShowCallout = YES;
+    }
+    else {
+        annView.annotation = annotation;
+    }
+    
+    annView.pinColor = ((Venue*)annotation).foursquareId ? MKPinAnnotationColorPurple : MKPinAnnotationColorRed;
+    return annView;
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
@@ -152,7 +174,10 @@
 }
 
 - (NSString *)subtitle {
-    return [NSString stringWithFormat:@"%@ checkins", self.currentFoursquare];
+    if (self.currentFoursquare.integerValue < 1) {
+        return nil;
+    }
+    return [NSString stringWithFormat:@"%@ Foursquare checkins", self.currentFoursquare];
 }
 
 @end
