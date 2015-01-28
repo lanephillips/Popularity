@@ -11,6 +11,7 @@
 #import <Fabric/Fabric.h>
 #import <TwitterKit/TwitterKit.h>
 #import <Crashlytics/Crashlytics.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
