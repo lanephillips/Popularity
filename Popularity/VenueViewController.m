@@ -32,56 +32,7 @@
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
     self.debugTextView.text = @"";
-    if (APP.twitterSession) {
-        NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json";
-        NSDictionary *params = @{
-                                 @"q": self.venue.name,
-                                 @"geocode": [NSString stringWithFormat:@"%@,%@,1km", self.venue.latitude, self.venue.longitude],
-                                 @"result_type": @"recent",
-                                 @"count": @"100"
-                                 };
-        NSError *clientError;
-        NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
-                                 URLRequestWithMethod:@"GET"
-                                 URL:statusesShowEndpoint
-                                 parameters:params
-                                 error:&clientError];
-        
-        if (request) {
-            [[[Twitter sharedInstance] APIClient]
-             sendTwitterRequest:request
-             completion:^(NSURLResponse *response,
-                          NSData *data,
-                          NSError *connectionError) {
-                 if (data) {
-                     // handle the response data e.g.
-                     NSError *jsonError;
-                     NSDictionary *json = [NSJSONSerialization
-                                           JSONObjectWithData:data
-                                           options:0
-                                           error:&jsonError];
-                     if (!jsonError) {
-                         NSLog(@"%@", json);
-                         
-                         NSMutableString* s = [NSMutableString string];
-                         for (NSDictionary* tweet in json[@"statuses"]) {
-                             [s appendFormat:@"%@\n", tweet[@"text"]];
-                         }
-                         self.debugTextView.text = s;
-                     }
-                     else {
-                         NSLog(@"Error: %@", jsonError);
-                     }
-                 }
-                 else {
-                     NSLog(@"Error: %@", connectionError);
-                 }
-             }];
-        }
-        else {
-            NSLog(@"Error: %@", clientError);
-        }
-    }
+    [self searchFacebookNearVenu:self.venue];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,14 +40,75 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+#pragma mark - nearby activity
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)searchTwitterNearVenu:(Venue*)venue {
+    if (!APP.twitterSession) {
+        return;
+    }
+
+    NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json";
+    NSDictionary *params = @{
+                             @"q": venue.name,
+                             @"geocode": [NSString stringWithFormat:@"%@,%@,1km", venue.latitude, venue.longitude],
+                             @"result_type": @"recent",
+                             @"count": @"100"
+                             };
+    NSError *clientError;
+    NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
+                             URLRequestWithMethod:@"GET"
+                             URL:statusesShowEndpoint
+                             parameters:params
+                             error:&clientError];
+    
+    if (request) {
+        [[[Twitter sharedInstance] APIClient]
+         sendTwitterRequest:request
+         completion:^(NSURLResponse *response,
+                      NSData *data,
+                      NSError *connectionError) {
+             if (data) {
+                 // handle the response data e.g.
+                 NSError *jsonError;
+                 NSDictionary *json = [NSJSONSerialization
+                                       JSONObjectWithData:data
+                                       options:0
+                                       error:&jsonError];
+                 if (!jsonError) {
+                     NSLog(@"%@", json);
+                     
+                     NSMutableString* s = [NSMutableString string];
+                     for (NSDictionary* tweet in json[@"statuses"]) {
+                         [s appendFormat:@"%@\n", tweet[@"text"]];
+                     }
+                     self.debugTextView.text = s;
+                 }
+                 else {
+                     NSLog(@"Error: %@", jsonError);
+                 }
+             }
+             else {
+                 NSLog(@"Error: %@", connectionError);
+             }
+         }];
+    }
+    else {
+        NSLog(@"Error: %@", clientError);
+    }
 }
-*/
+
+- (void)searchFacebookNearVenu:(Venue*)venue {
+    [FBRequestConnection startWithGraphPath:@"me/events?fields=cover,name,start_time"
+                          completionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+                              if (!error) {
+                                  // Sucess! Include your code to handle the results here
+                                  NSLog(@"user events: %@", result);
+                              } else {
+                                  // An error occurred, we need to handle the error
+                                  // See: https://developers.facebook.com/docs/ios/errors
+                                  NSLog(@"%@", error);
+                              }
+                          }];
+}
 
 @end
