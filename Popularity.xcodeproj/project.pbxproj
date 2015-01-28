@@ -171,25 +171,9 @@
 			children = (
 				3D3FBB911A743052001B3852 /* AppDelegate.h */,
 				3D3FBB921A743052001B3852 /* AppDelegate.m */,
-				3D3FBB971A743052001B3852 /* ViewController.h */,
-				3D3FBB981A743052001B3852 /* ViewController.m */,
-				3D3FBBC21A74AC76001B3852 /* Foursquare.h */,
-				3D3FBBC31A74AC76001B3852 /* Foursquare.m */,
-				3D3FBBC51A77311C001B3852 /* Yelp.h */,
-				3D3FBBC61A77312C001B3852 /* Yelp.m */,
-				3D3FBBB71A743345001B3852 /* VenueViewController.h */,
-				3D3FBBB81A743345001B3852 /* VenueViewController.m */,
-				3D3FBB9A1A743052001B3852 /* Main.storyboard */,
-				3D3FBB9D1A743052001B3852 /* Images.xcassets */,
-				3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */,
-				3D3FBB941A743052001B3852 /* Popularity.xcdatamodeld */,
-				3D3FBBBF1A7436AC001B3852 /* Hour.h */,
-				3D3FBBC01A7436AC001B3852 /* Hour.m */,
-				3D3FBBBC1A7436AB001B3852 /* Venue.h */,
-				3D3FBBBD1A7436AB001B3852 /* Venue.m */,
-				3D3FBC001A7834DB001B3852 /* NSURLRequest+OAuth.h */,
-				3D3FBC011A7834DB001B3852 /* NSURLRequest+OAuth.m */,
-				3D3FBBC81A783462001B3852 /* OAuthConsumer */,
+				3DBA5B9F1A79A0CD004196AB /* UI */,
+				3DBA5B9E1A79A0BC004196AB /* Services */,
+				3DBA5BA01A79A0D6004196AB /* Data Model */,
 				3D3FBB8D1A743052001B3852 /* Supporting Files */,
 			);
 			path = Popularity;
@@ -290,6 +274,46 @@
 				3D3FBC061A78456F001B3852 /* Fabric.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3DBA5B9E1A79A0BC004196AB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3D3FBBC21A74AC76001B3852 /* Foursquare.h */,
+				3D3FBBC31A74AC76001B3852 /* Foursquare.m */,
+				3D3FBBC51A77311C001B3852 /* Yelp.h */,
+				3D3FBBC61A77312C001B3852 /* Yelp.m */,
+				3D3FBC001A7834DB001B3852 /* NSURLRequest+OAuth.h */,
+				3D3FBC011A7834DB001B3852 /* NSURLRequest+OAuth.m */,
+				3D3FBBC81A783462001B3852 /* OAuthConsumer */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		3DBA5B9F1A79A0CD004196AB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				3D3FBB971A743052001B3852 /* ViewController.h */,
+				3D3FBB981A743052001B3852 /* ViewController.m */,
+				3D3FBBB71A743345001B3852 /* VenueViewController.h */,
+				3D3FBBB81A743345001B3852 /* VenueViewController.m */,
+				3D3FBB9A1A743052001B3852 /* Main.storyboard */,
+				3D3FBB9D1A743052001B3852 /* Images.xcassets */,
+				3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		3DBA5BA01A79A0D6004196AB /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				3D3FBB941A743052001B3852 /* Popularity.xcdatamodeld */,
+				3D3FBBBF1A7436AC001B3852 /* Hour.h */,
+				3D3FBBC01A7436AC001B3852 /* Hour.m */,
+				3D3FBBBC1A7436AB001B3852 /* Venue.h */,
+				3D3FBBBD1A7436AB001B3852 /* Venue.m */,
+			);
+			name = "Data Model";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -650,6 +674,7 @@
 				3D3FBBB21A743052001B3852 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3D3FBBB31A743052001B3852 /* Build configuration list for PBXNativeTarget "PopularityTests" */ = {
 			isa = XCConfigurationList;
@@ -658,6 +683,7 @@
 				3D3FBBB51A743052001B3852 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
