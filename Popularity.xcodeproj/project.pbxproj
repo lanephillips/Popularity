@@ -45,6 +45,7 @@
 		3D3FBC0B1A784682001B3852 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBC0A1A784682001B3852 /* Crashlytics.framework */; };
 		3DBA5BA31A79A107004196AB /* Instagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA21A79A107004196AB /* Instagram.m */; };
 		3DBA5BA61A79A601004196AB /* PTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA51A79A600004196AB /* PTwitter.m */; };
+		3DBA5BA91A79C7B7004196AB /* GooglePlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA81A79C7B7004196AB /* GooglePlus.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,6 +130,8 @@
 		3DBA5BA21A79A107004196AB /* Instagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instagram.m; sourceTree = "<group>"; };
 		3DBA5BA41A79A600004196AB /* PTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTwitter.h; sourceTree = "<group>"; };
 		3DBA5BA51A79A600004196AB /* PTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTwitter.m; sourceTree = "<group>"; };
+		3DBA5BA71A79C7A9004196AB /* GooglePlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooglePlus.h; sourceTree = "<group>"; };
+		3DBA5BA81A79C7B7004196AB /* GooglePlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglePlus.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -289,6 +292,8 @@
 				3DBA5BA51A79A600004196AB /* PTwitter.m */,
 				3DBA5BA11A79A107004196AB /* Instagram.h */,
 				3DBA5BA21A79A107004196AB /* Instagram.m */,
+				3DBA5BA71A79C7A9004196AB /* GooglePlus.h */,
+				3DBA5BA81A79C7B7004196AB /* GooglePlus.m */,
 				3D3FBBC21A74AC76001B3852 /* Foursquare.h */,
 				3D3FBBC31A74AC76001B3852 /* Foursquare.m */,
 				3D3FBBC51A77311C001B3852 /* Yelp.h */,
@@ -483,6 +488,7 @@
 				3D3FBBF61A783462001B3852 /* OAConsumer.m in Sources */,
 				3D3FBBB91A743345001B3852 /* VenueViewController.m in Sources */,
 				3D3FBBFB1A783462001B3852 /* OAProblem.m in Sources */,
+				3DBA5BA91A79C7B7004196AB /* GooglePlus.m in Sources */,
 				3D3FBBFF1A783462001B3852 /* OATokenManager.m in Sources */,
 				3D3FBBEF1A783462001B3852 /* NSMutableURLRequest+Parameters.m in Sources */,
 				3D3FBBC71A77312C001B3852 /* Yelp.m in Sources */,
