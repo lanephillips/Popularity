@@ -1,23 +1,23 @@
 //
-//  Venue.m
+//  Post.m
 //  Popularity
 //
 //  Created by Lane Phillips on 1/28/15.
 //  Copyright (c) 2015 Milk LLC. All rights reserved.
 //
 
-#import "Venue.h"
 #import "Post.h"
+#import "Venue.h"
 
 
-@implementation Venue
+@implementation Post
 
-@dynamic currentFoursquare;
-@dynamic foursquareId;
+@dynamic twitterId;
+@dynamic instagramId;
+@dynamic date;
 @dynamic latitude;
 @dynamic longitude;
-@dynamic name;
-@dynamic yelpId;
-@dynamic posts;
+@dynamic text;
+@dynamic venues;
 
 @end

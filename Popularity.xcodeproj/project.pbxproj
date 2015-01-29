@@ -17,8 +17,6 @@
 		3D3FBBAD1A743052001B3852 /* PopularityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBAC1A743052001B3852 /* PopularityTests.m */; };
 		3D3FBBB91A743345001B3852 /* VenueViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBB81A743345001B3852 /* VenueViewController.m */; };
 		3D3FBBBB1A7433F0001B3852 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBBBA1A7433F0001B3852 /* MapKit.framework */; };
-		3D3FBBBE1A7436AC001B3852 /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBBD1A7436AB001B3852 /* Venue.m */; };
-		3D3FBBC11A7436AC001B3852 /* Hour.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBC01A7436AC001B3852 /* Hour.m */; };
 		3D3FBBC41A74AC76001B3852 /* Foursquare.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBC31A74AC76001B3852 /* Foursquare.m */; };
 		3D3FBBC71A77312C001B3852 /* Yelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBC61A77312C001B3852 /* Yelp.m */; };
 		3D3FBBEF1A783462001B3852 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D3FBBCB1A783462001B3852 /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -45,6 +43,8 @@
 		3D3FBC0B1A784682001B3852 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBC0A1A784682001B3852 /* Crashlytics.framework */; };
 		3DBA5BA31A79A107004196AB /* Instagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA21A79A107004196AB /* Instagram.m */; };
 		3DBA5BA61A79A601004196AB /* PTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA51A79A600004196AB /* PTwitter.m */; };
+		3DBA5BAC1A79CDAD004196AB /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BAB1A79CDAD004196AB /* Post.m */; };
+		3DBA5BAF1A79CDE7004196AB /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BAE1A79CDE7004196AB /* Venue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,10 +75,6 @@
 		3D3FBBB71A743345001B3852 /* VenueViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VenueViewController.h; sourceTree = "<group>"; };
 		3D3FBBB81A743345001B3852 /* VenueViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VenueViewController.m; sourceTree = "<group>"; };
 		3D3FBBBA1A7433F0001B3852 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		3D3FBBBC1A7436AB001B3852 /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
-		3D3FBBBD1A7436AB001B3852 /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
-		3D3FBBBF1A7436AC001B3852 /* Hour.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hour.h; sourceTree = "<group>"; };
-		3D3FBBC01A7436AC001B3852 /* Hour.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Hour.m; sourceTree = "<group>"; };
 		3D3FBBC21A74AC76001B3852 /* Foursquare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Foursquare.h; sourceTree = "<group>"; };
 		3D3FBBC31A74AC76001B3852 /* Foursquare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Foursquare.m; sourceTree = "<group>"; };
 		3D3FBBC51A77311C001B3852 /* Yelp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Yelp.h; sourceTree = "<group>"; };
@@ -129,6 +125,10 @@
 		3DBA5BA21A79A107004196AB /* Instagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instagram.m; sourceTree = "<group>"; };
 		3DBA5BA41A79A600004196AB /* PTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTwitter.h; sourceTree = "<group>"; };
 		3DBA5BA51A79A600004196AB /* PTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTwitter.m; sourceTree = "<group>"; };
+		3DBA5BAA1A79CDAD004196AB /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		3DBA5BAB1A79CDAD004196AB /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		3DBA5BAD1A79CDE7004196AB /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		3DBA5BAE1A79CDE7004196AB /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,10 +318,10 @@
 			isa = PBXGroup;
 			children = (
 				3D3FBB941A743052001B3852 /* Popularity.xcdatamodeld */,
-				3D3FBBBF1A7436AC001B3852 /* Hour.h */,
-				3D3FBBC01A7436AC001B3852 /* Hour.m */,
-				3D3FBBBC1A7436AB001B3852 /* Venue.h */,
-				3D3FBBBD1A7436AB001B3852 /* Venue.m */,
+				3DBA5BAA1A79CDAD004196AB /* Post.h */,
+				3DBA5BAB1A79CDAD004196AB /* Post.m */,
+				3DBA5BAD1A79CDE7004196AB /* Venue.h */,
+				3DBA5BAE1A79CDE7004196AB /* Venue.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -465,14 +465,13 @@
 				3D3FBB931A743052001B3852 /* AppDelegate.m in Sources */,
 				3D3FBBF71A783462001B3852 /* OADataFetcher.m in Sources */,
 				3DBA5BA31A79A107004196AB /* Instagram.m in Sources */,
-				3D3FBBC11A7436AC001B3852 /* Hour.m in Sources */,
 				3D3FBB901A743052001B3852 /* main.m in Sources */,
 				3D3FBBFE1A783462001B3852 /* OAToken.m in Sources */,
 				3D3FBB991A743052001B3852 /* ViewController.m in Sources */,
+				3DBA5BAF1A79CDE7004196AB /* Venue.m in Sources */,
 				3D3FBBF11A783462001B3852 /* NSURL+Base.m in Sources */,
 				3D3FBBC41A74AC76001B3852 /* Foursquare.m in Sources */,
 				3D3FBBFD1A783462001B3852 /* OAServiceTicket.m in Sources */,
-				3D3FBBBE1A7436AC001B3852 /* Venue.m in Sources */,
 				3D3FBBF31A783462001B3852 /* hmac.c in Sources */,
 				3D3FBBF21A783462001B3852 /* Base64Transcoder.c in Sources */,
 				3D3FBB961A743052001B3852 /* Popularity.xcdatamodeld in Sources */,
@@ -488,6 +487,7 @@
 				3D3FBBC71A77312C001B3852 /* Yelp.m in Sources */,
 				3D3FBBF51A783462001B3852 /* OACall.m in Sources */,
 				3D3FBBFA1A783462001B3852 /* OAPlaintextSignatureProvider.m in Sources */,
+				3DBA5BAC1A79CDAD004196AB /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
