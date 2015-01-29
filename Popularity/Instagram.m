@@ -7,6 +7,8 @@
 //
 
 #import "Instagram.h"
+#import "AppDelegate.h"
+#import "Post.h"
 
 static const NSString* ClientID = @"645221ed88c34da2bea9cae2bce61904";
 
@@ -34,31 +36,68 @@ static const NSString* ClientID = @"645221ed88c34da2bea9cae2bce61904";
                                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
                                   {
                                       NSHTTPURLResponse* httpr = (NSHTTPURLResponse*)response;
-                                      NSLog(@"%ld %@", (long)httpr.statusCode, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
                                       
-                                      NSArray* venues = @[];
+                                      NSArray* posts = @[];
                                       if (error) {
                                           NSLog(@"%@", error);
-//                                      } else if (data) {
-//                                          NSError* err = nil;
-//                                          NSDictionary* json = [NSJSONSerialization JSONObjectWithData:data
-//                                                                                               options:0 error:&err];
-//                                          if (err) {
-//                                              NSLog(@"%@", err);
-//                                          } else {
-//                                              venues = json[@"response"][@"venues"];
-//                                          }
+                                      }
+                                      else if (httpr.statusCode != 200) {
+                                          NSLog(@"%ld %@", (long)httpr.statusCode, [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding]);
+                                      }
+                                      else if (data) {
+                                          NSError *jsonError;
+                                          NSDictionary *json = [NSJSONSerialization
+                                                                JSONObjectWithData:data
+                                                                options:0
+                                                                error:&jsonError];
+                                          if (!jsonError) {
+                                              posts = json[@"data"];
+                                          }
+                                          else {
+                                              NSLog(@"Error: %@", jsonError);
+                                          }
                                       }
                                       
                                       dispatch_async(dispatch_get_main_queue(), ^{
-                                          NSMutableArray* ven2 = [NSMutableArray arrayWithCapacity:venues.count];
-//                                          for (NSDictionary* dict in venues) {
-//                                              [ven2 addObject:[self findOrAddVenue:dict]];
-//                                          }
-                                          completion(ven2);
+                                          NSMutableArray* posts2 = [NSMutableArray arrayWithCapacity:posts.count];
+                                          for (NSDictionary* post in posts) {
+                                              [posts2 addObject:[self findOrAddMedia:post atVenue:venue]];
+                                          }
+                                          completion(posts2);
                                       });
                                   }];
     [task resume];
+}
+
+- (Post*)findOrAddMedia:(NSDictionary*)post atVenue:(Venue*)venue {
+    //NSLog(@"%@", post);
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"instagramId LIKE %@", post[@"id"]];
+    
+    NSError* err = nil;
+    NSArray* a = [APP.managedObjectContext executeFetchRequest:fr error:&err];
+    if (err) {
+        NSLog(@"%@", err);
+    }
+    
+    Post* p = a.firstObject;
+    if (!p) {
+        NSEntityDescription* ed = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:APP.managedObjectContext];
+        p = [[Post alloc] initWithEntity:ed insertIntoManagedObjectContext:APP.managedObjectContext];
+    }
+    
+    p.instagramId = post[@"id"];
+    if (post[@"caption"] && [post[@"caption"] isKindOfClass:[NSDictionary class]]) {
+        p.text = post[@"caption"][@"text"];
+    }
+    p.date = [NSDate dateWithTimeIntervalSince1970:[post[@"created_time"] doubleValue]];
+
+    if (post[@"location"] && [post[@"location"] isKindOfClass:[NSDictionary class]]) {
+        p.latitude = @([post[@"location"][@"latitude"] doubleValue]);
+        p.longitude = @([post[@"location"][@"longitude"] doubleValue]);
+    }
+    
+    return p;
 }
 
 @end

@@ -35,6 +35,8 @@
     
     self.debugTextView.text = @"";
     [[PTwitter shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
+    }];
+    [[Instagram shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
         NSMutableString* s = [NSMutableString string];
         for (Post* tweet in posts) {
             [s appendFormat:@"%@ %@\n", tweet.date, tweet.text];
