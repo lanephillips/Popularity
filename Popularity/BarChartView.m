@@ -6,9 +6,9 @@
 //  Copyright (c) 2015 Milk LLC. All rights reserved.
 //
 
-#import "BarCharView.h"
+#import "BarChartView.h"
 
-@implementation BarCharView
+@implementation BarChartView
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];

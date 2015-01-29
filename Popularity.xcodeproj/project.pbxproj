@@ -45,7 +45,7 @@
 		3DBA5BA61A79A601004196AB /* PTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA51A79A600004196AB /* PTwitter.m */; };
 		3DBA5BAC1A79CDAD004196AB /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BAB1A79CDAD004196AB /* Post.m */; };
 		3DBA5BAF1A79CDE7004196AB /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BAE1A79CDE7004196AB /* Venue.m */; };
-		3DBA5BB51A7A8B62004196AB /* BarCharView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BB41A7A8B62004196AB /* BarCharView.m */; };
+		3DBA5BB51A7A8B62004196AB /* BarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BB41A7A8B62004196AB /* BarChartView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,8 +130,8 @@
 		3DBA5BAB1A79CDAD004196AB /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		3DBA5BAD1A79CDE7004196AB /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		3DBA5BAE1A79CDE7004196AB /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
-		3DBA5BB31A7A8B62004196AB /* BarCharView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarCharView.h; sourceTree = "<group>"; };
-		3DBA5BB41A7A8B62004196AB /* BarCharView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarCharView.m; sourceTree = "<group>"; };
+		3DBA5BB31A7A8B62004196AB /* BarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartView.h; sourceTree = "<group>"; };
+		3DBA5BB41A7A8B62004196AB /* BarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,8 +310,8 @@
 				3D3FBB981A743052001B3852 /* ViewController.m */,
 				3D3FBBB71A743345001B3852 /* VenueViewController.h */,
 				3D3FBBB81A743345001B3852 /* VenueViewController.m */,
-				3DBA5BB31A7A8B62004196AB /* BarCharView.h */,
-				3DBA5BB41A7A8B62004196AB /* BarCharView.m */,
+				3DBA5BB31A7A8B62004196AB /* BarChartView.h */,
+				3DBA5BB41A7A8B62004196AB /* BarChartView.m */,
 				3D3FBB9A1A743052001B3852 /* Main.storyboard */,
 				3D3FBB9D1A743052001B3852 /* Images.xcassets */,
 				3D3FBB9F1A743052001B3852 /* LaunchScreen.xib */,
@@ -492,7 +492,7 @@
 				3D3FBBC71A77312C001B3852 /* Yelp.m in Sources */,
 				3D3FBBF51A783462001B3852 /* OACall.m in Sources */,
 				3D3FBBFA1A783462001B3852 /* OAPlaintextSignatureProvider.m in Sources */,
-				3DBA5BB51A7A8B62004196AB /* BarCharView.m in Sources */,
+				3DBA5BB51A7A8B62004196AB /* BarChartView.m in Sources */,
 				3DBA5BAC1A79CDAD004196AB /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

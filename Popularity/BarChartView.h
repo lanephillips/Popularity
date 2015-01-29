@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 IB_DESIGNABLE
-@interface BarCharView : UIView
+@interface BarChartView : UIView
 
 @property (nonatomic) IBInspectable CGFloat barWidth;
 
