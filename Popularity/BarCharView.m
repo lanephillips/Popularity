@@ -79,7 +79,8 @@
             intensity = self.transferFunction(bar.floatValue);
         }
         
-        UIColor* c = [self nearestColor:intensity];
+        // TODO: or maybe I want a gradient that is the same for every bar
+        UIColor* c = [self interpolateColor:intensity];
         
         CGContextSetFillColorWithColor(ctx, c.CGColor);
         CGContextFillRect(ctx, CGRectMake(x, 0, 1, bar.floatValue));
@@ -109,6 +110,35 @@
     } else {
         return self.colorScale[ilo + 1];
     }
+}
+
+- (UIColor*)interpolateColor:(CGFloat)c {
+    if (self.colorScale.count == 0) {
+        return [UIColor redColor];
+    }
+    if (self.colorScale.count == 1) {
+        return self.colorScale.lastObject;
+    }
+    
+    c *= self.colorScale.count - 1; // map [0, 1] to [0, n colors - 1]
+    
+    // find nearest colors
+    NSInteger ilo = floor(c);
+    ilo = MAX(0, MIN(ilo, self.colorScale.count - 2));
+    
+    CGFloat r0, b0, g0, a0, r1, b1, g1, a1;
+    [(UIColor*)self.colorScale[ilo + 0] getRed:&r0 green:&g0 blue:&b0 alpha:&a0];
+    [(UIColor*)self.colorScale[ilo + 1] getRed:&r1 green:&g1 blue:&b1 alpha:&a1];
+    
+    // interpolate
+    CGFloat frac1 = c - ilo;
+    frac1 = MAX(0, MIN(frac1, 1));
+    CGFloat frac0 = 1 - frac1;
+    
+    return [UIColor colorWithRed:frac0 * r0 + frac1 * r1
+                           green:frac0 * g0 + frac1 * g1
+                            blue:frac0 * b0 + frac1 * b1
+                           alpha:frac0 * a0 + frac1 * a1];
 }
 
 @end
