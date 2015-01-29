@@ -8,6 +8,8 @@
 
 #import "PTwitter.h"
 #import <TwitterKit/TwitterKit.h>
+#import "AppDelegate.h"
+#import "Post.h"
 
 @interface PTwitter ()
 
@@ -89,13 +91,52 @@
              else {
                  NSLog(@"Error: %@", connectionError);
              }
-             completion(posts);
+             
+             NSMutableArray* posts2 = [NSMutableArray arrayWithCapacity:posts.count];
+             for (NSDictionary* post in posts) {
+                 [posts2 addObject:[self findOrAddTweet:post atVenue:venue]];
+             }
+             completion(posts2);
          }];
     }
     else {
         NSLog(@"Error: %@", clientError);
         completion(@[]);
     }
+}
+
+- (Post*)findOrAddTweet:(NSDictionary*)tweet atVenue:(Venue*)venue {
+    //NSLog(@"%@", tweet);
+    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
+    fr.predicate = [NSPredicate predicateWithFormat:@"twitterId LIKE %@", tweet[@"id_str"]];
+    
+    NSError* err = nil;
+    NSArray* a = [APP.managedObjectContext executeFetchRequest:fr error:&err];
+    if (err) {
+        NSLog(@"%@", err);
+    }
+    
+    Post* p = a.firstObject;
+    if (!p) {
+        NSEntityDescription* ed = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:APP.managedObjectContext];
+        p = [[Post alloc] initWithEntity:ed insertIntoManagedObjectContext:APP.managedObjectContext];
+    }
+    
+    p.twitterId = tweet[@"id_str"];
+    p.text = tweet[@"text"];
+    if (tweet[@"geo"] && tweet[@"geo"][@"coordinates"]) {
+        p.latitude = @([tweet[@"geo"][@"coordinates"][0] doubleValue]);
+        p.longitude = @([tweet[@"geo"][@"coordinates"][1] doubleValue]);
+    }
+    
+    NSDateFormatter *fromTwitter = [[NSDateFormatter alloc] init];
+    // here we set the DateFormat  - note the quotes around +0000
+    [fromTwitter setDateFormat:@"EEE MMM dd HH:mm:ss '+0000' yyyy"];
+    // We need to set the locale to english - since the day- and month-names are in english
+    [fromTwitter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"en-US"]];
+    p.date = [fromTwitter dateFromString:tweet[@"created_at"]];
+    
+    return p;
 }
 
 @end

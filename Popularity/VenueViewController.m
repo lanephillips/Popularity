@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "PTwitter.h"
 #import "Instagram.h"
+#import "Post.h"
 
 @interface VenueViewController ()
 
@@ -33,17 +34,10 @@
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
     self.debugTextView.text = @"";
-//    [[PTwitter shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
-//        NSMutableString* s = [NSMutableString string];
-//        for (NSDictionary* tweet in posts) {
-//            [s appendFormat:@"%@\n", tweet[@"text"]];
-//        }
-//        self.debugTextView.text = s;
-//    }];
-    [[Instagram shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
+    [[PTwitter shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
         NSMutableString* s = [NSMutableString string];
-        for (NSDictionary* tweet in posts) {
-            [s appendFormat:@"%@\n", tweet];// tweet[@"text"]];
+        for (Post* tweet in posts) {
+            [s appendFormat:@"%@ %@\n", tweet.date, tweet.text];
         }
         self.debugTextView.text = s;
     }];
