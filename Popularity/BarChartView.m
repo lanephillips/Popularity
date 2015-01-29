@@ -54,6 +54,16 @@
     self.bars = random;
 }
 
+- (void)setBarWidth:(CGFloat)barWidth {
+    _barWidth = barWidth;
+    [self setNeedsDisplay];
+}
+
+- (void)setBars:(NSArray *)bars {
+    _bars = bars;
+    [self setNeedsDisplay];
+}
+
 - (void)drawRect:(CGRect)rect {
     CGFloat maxBar = 0;
     for (NSNumber* bar in self.bars) {
