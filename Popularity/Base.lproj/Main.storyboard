@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2T0-Y4-uPI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -90,22 +91,36 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw9-bp-Ck9">
-                                <rect key="frame" x="16" y="156" width="568" height="424"/>
+                                <rect key="frame" x="16" y="156" width="568" height="236"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-TJ-Wfg" customClass="BarCharView">
+                                <rect key="frame" x="0.0" y="400" width="600" height="200"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
+                                        <real key="value" value="10"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="reverseDirection" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Gw9-bp-Ck9" secondAttribute="trailing" constant="16" id="3Oy-hl-iFm"/>
                             <constraint firstItem="DML-g4-Ctg" firstAttribute="top" secondItem="fW0-kC-iI2" secondAttribute="bottom" constant="8" id="5wL-Ub-enb"/>
                             <constraint firstItem="Gw9-bp-Ck9" firstAttribute="top" secondItem="DML-g4-Ctg" secondAttribute="bottom" constant="8" id="Aun-1L-vCZ"/>
-                            <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" constant="20" id="DWv-hn-gUk"/>
+                            <constraint firstItem="yP1-TJ-Wfg" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" constant="8" id="E0v-69-7ic"/>
                             <constraint firstItem="Gw9-bp-Ck9" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="FMW-y5-2dF"/>
+                            <constraint firstAttribute="trailing" secondItem="yP1-TJ-Wfg" secondAttribute="trailing" id="KRx-5z-0fi"/>
+                            <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="yP1-TJ-Wfg" secondAttribute="bottom" id="MDT-W8-XNN"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="h1G-Si-X32"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="leading" secondItem="DML-g4-Ctg" secondAttribute="leading" id="kba-Ri-zlV"/>
+                            <constraint firstItem="yP1-TJ-Wfg" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" id="qCD-Uo-R4u"/>
+                            <constraint firstItem="yP1-TJ-Wfg" firstAttribute="height" secondItem="x8R-iX-fm8" secondAttribute="height" multiplier="1/3" id="vWw-kU-VXl"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="top" secondItem="wCG-c8-UZ2" secondAttribute="bottom" constant="8" id="zI0-kO-9Ah"/>
                         </constraints>
                     </view>
