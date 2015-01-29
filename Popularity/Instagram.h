@@ -7,7 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Venue.h"
 
 @interface Instagram : NSObject
+
++ (instancetype)shared;
+
+- (void)getPostsNearVenue:(Venue*)venue completion:(void(^)(NSArray* venues))completion;
 
 @end
