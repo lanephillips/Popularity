@@ -11,12 +11,14 @@
 #import "PTwitter.h"
 #import "Instagram.h"
 #import "Post.h"
+#import "BarChartView.h"
 
 @interface VenueViewController ()
 
 @property (weak, nonatomic) IBOutlet UILabel *venueLbl;
 @property (weak, nonatomic) IBOutlet UILabel *checkinLbl;
 @property (weak, nonatomic) IBOutlet UITextView *debugTextView;
+@property (weak, nonatomic) IBOutlet BarChartView *barChart;
 
 @end
 
@@ -25,6 +27,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self.barChart prepareForInterfaceBuilder]; // random bars
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -43,6 +47,14 @@
         }
         self.debugTextView.text = s;
     }];
+}
+
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    
+    CGFloat longer = MAX(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
+    self.barChart.barWidth = longer / self.barChart.bars.count;
+    [self.barChart setNeedsDisplay];
 }
 
 - (void)didReceiveMemoryWarning {

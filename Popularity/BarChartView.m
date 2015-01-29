@@ -83,7 +83,7 @@
         UIColor* c = [self interpolateColor:intensity];
         
         CGContextSetFillColorWithColor(ctx, c.CGColor);
-        CGContextFillRect(ctx, CGRectMake(x, 0, 1, bar.floatValue));
+        CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, bar.floatValue));  // slightly wide so there are no gaps
         
         x += 1;
     }

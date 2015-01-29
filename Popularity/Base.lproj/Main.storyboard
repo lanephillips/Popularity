@@ -91,15 +91,15 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw9-bp-Ck9">
-                                <rect key="frame" x="16" y="156" width="568" height="236"/>
+                                <rect key="frame" x="16" y="156" width="568" height="428"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-TJ-Wfg" customClass="BarChartView">
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-TJ-Wfg" customClass="BarChartView">
                                 <rect key="frame" x="0.0" y="400" width="600" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
                                         <real key="value" value="3"/>
@@ -112,8 +112,8 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Gw9-bp-Ck9" secondAttribute="trailing" constant="16" id="3Oy-hl-iFm"/>
                             <constraint firstItem="DML-g4-Ctg" firstAttribute="top" secondItem="fW0-kC-iI2" secondAttribute="bottom" constant="8" id="5wL-Ub-enb"/>
+                            <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" constant="16" id="97I-iR-nfY"/>
                             <constraint firstItem="Gw9-bp-Ck9" firstAttribute="top" secondItem="DML-g4-Ctg" secondAttribute="bottom" constant="8" id="Aun-1L-vCZ"/>
-                            <constraint firstItem="yP1-TJ-Wfg" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" constant="8" id="E0v-69-7ic"/>
                             <constraint firstItem="Gw9-bp-Ck9" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="FMW-y5-2dF"/>
                             <constraint firstAttribute="trailing" secondItem="yP1-TJ-Wfg" secondAttribute="trailing" id="KRx-5z-0fi"/>
                             <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="yP1-TJ-Wfg" secondAttribute="bottom" id="MDT-W8-XNN"/>
@@ -125,6 +125,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="barChart" destination="yP1-TJ-Wfg" id="vm3-yf-aCW"/>
                         <outlet property="checkinLbl" destination="DML-g4-Ctg" id="c4x-5n-wLJ"/>
                         <outlet property="debugTextView" destination="Gw9-bp-Ck9" id="05c-Sq-mLm"/>
                         <outlet property="venueLbl" destination="fW0-kC-iI2" id="GK1-13-g3n"/>
