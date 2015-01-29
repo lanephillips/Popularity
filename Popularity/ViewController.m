@@ -15,6 +15,11 @@
 @import CoreLocation;
 @import MapKit;
 
+static NSString* const MapCenterLatitudeKey = @"MapCenterLatitudeKey";
+static NSString* const MapCenterLongitudeKey = @"MapCenterLongitudeKey";
+static NSString* const MapLatitudeSpanKey = @"MapLatitudeSpanKey";
+static NSString* const MapLongitudeSpanKey = @"MapLongitudeSpanKey";
+
 @interface Venue (MapKit) <MKAnnotation>
 
 @end
@@ -45,6 +50,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:animated];
+    [self restoreMapRegion:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -96,8 +102,6 @@
     CLLocation* location = [locations lastObject];
     NSLog(@"got location: %f, %f", location.coordinate.latitude, location.coordinate.longitude);
     
-    // TODO: save last map location for startup next time
-    
     // wait until we have a fresh result to update the map
     NSDate* eventDate = location.timestamp;
     NSTimeInterval howRecent = [eventDate timeIntervalSinceNow];
@@ -115,10 +119,32 @@
     NSLog(@"%@", error);
     [self.locationManager stopUpdatingLocation];
 }
+         
+#pragma mark - save/restore map position
+         
+- (void)saveMapRegion {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setDouble:self.map.region.center.latitude forKey:MapCenterLatitudeKey];
+    [defaults setDouble:self.map.region.center.longitude forKey:MapCenterLongitudeKey];
+    [defaults setDouble:self.map.region.span.latitudeDelta forKey:MapLatitudeSpanKey];
+    [defaults setDouble:self.map.region.span.longitudeDelta forKey:MapLongitudeSpanKey];
+}
+
+- (void)restoreMapRegion:(BOOL)animated {
+    NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:MapCenterLatitudeKey]) {
+        [self.map setRegion:MKCoordinateRegionMake(CLLocationCoordinate2DMake([defaults doubleForKey:MapCenterLatitudeKey],
+                                                                              [defaults doubleForKey:MapCenterLongitudeKey]),
+                                                   MKCoordinateSpanMake([defaults doubleForKey:MapLatitudeSpanKey],
+                                                                        [defaults doubleForKey:MapLongitudeSpanKey]))
+                   animated:animated];
+    }
+}
 
 #pragma mark - map view delegate
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
+    [self saveMapRegion];
     [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
         for (Venue* v in venues) {
             [self.map addAnnotation:v];
