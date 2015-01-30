@@ -47,6 +47,7 @@
 		3DBA5BB81A7B2788004196AB /* VenueStats.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BB71A7B2788004196AB /* VenueStats.m */; };
 		3DBA5BBB1A7B3404004196AB /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BBA1A7B3404004196AB /* Post.m */; };
 		3DBA5BBE1A7B3404004196AB /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BBD1A7B3404004196AB /* Venue.m */; };
+		3DBA5BC11A7B396B004196AB /* ServiceAggregator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BC01A7B396B004196AB /* ServiceAggregator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,8 @@
 		3DBA5BBA1A7B3404004196AB /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 		3DBA5BBC1A7B3404004196AB /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
 		3DBA5BBD1A7B3404004196AB /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
+		3DBA5BBF1A7B396B004196AB /* ServiceAggregator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceAggregator.h; sourceTree = "<group>"; };
+		3DBA5BC01A7B396B004196AB /* ServiceAggregator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceAggregator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -293,6 +296,8 @@
 		3DBA5B9E1A79A0BC004196AB /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA5BBF1A7B396B004196AB /* ServiceAggregator.h */,
+				3DBA5BC01A7B396B004196AB /* ServiceAggregator.m */,
 				3DBA5BA41A79A600004196AB /* PTwitter.h */,
 				3DBA5BA51A79A600004196AB /* PTwitter.m */,
 				3DBA5BA11A79A107004196AB /* Instagram.h */,
@@ -471,6 +476,7 @@
 			files = (
 				3DBA5BA61A79A601004196AB /* PTwitter.m in Sources */,
 				3D3FBBF41A783462001B3852 /* sha1.c in Sources */,
+				3DBA5BC11A7B396B004196AB /* ServiceAggregator.m in Sources */,
 				3D3FBBF01A783462001B3852 /* NSString+URLEncoding.m in Sources */,
 				3DBA5BB81A7B2788004196AB /* VenueStats.m in Sources */,
 				3D3FBB931A743052001B3852 /* AppDelegate.m in Sources */,

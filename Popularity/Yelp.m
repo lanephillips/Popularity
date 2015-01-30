@@ -29,7 +29,7 @@ static NSString * const kBusinessPath      = @"/v2/business/";
     return f;
 }
 
-- (void)getVenuesInRegion:(MKCoordinateRegion)region completion:(void (^)(NSArray *))completion {
+- (NSURLSessionDataTask*)getVenuesInRegion:(MKCoordinateRegion)region completion:(void (^)(NSArray *))completion {
     
     NSURLRequest* request = [NSURLRequest requestWithHost:kAPIHost
                                                      path:kSearchPath
@@ -68,6 +68,7 @@ static NSString * const kBusinessPath      = @"/v2/business/";
                                       });
                                   }];
     [task resume];
+    return task;
 }
 
 - (Venue*)findOrAddVenue:(NSDictionary*)venue {

@@ -7,8 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "Foursquare.h"
-#import "Yelp.h"
+#import "ServiceAggregator.h"
 #import "Venue.h"
 #import "VenueViewController.h"
 #import <TwitterKit/TwitterKit.h>
@@ -29,6 +28,7 @@ static NSString* const MapLongitudeSpanKey = @"MapLongitudeSpanKey";
 
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (nonatomic) CLLocationManager* locationManager;
+@property (nonatomic) VenuesRequest* venuesRequest;
 
 @end
 
@@ -145,12 +145,9 @@ static NSString* const MapLongitudeSpanKey = @"MapLongitudeSpanKey";
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
     [self saveMapRegion];
-    [[Foursquare shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
-        for (Venue* v in venues) {
-            [self.map addAnnotation:v];
-        }
-    }];
-    [[Yelp shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
+    
+    [self.venuesRequest cancel];
+    self.venuesRequest = [[ServiceAggregator shared] getVenuesInRegion:mapView.region completion:^(NSArray *venues) {
         for (Venue* v in venues) {
             [self.map addAnnotation:v];
         }

@@ -13,6 +13,6 @@
 
 + (instancetype)shared;
 
-- (void)getVenuesInRegion:(MKCoordinateRegion)region completion:(void(^)(NSArray* venues))completion;
+- (NSURLSessionDataTask*)getVenuesInRegion:(MKCoordinateRegion)region completion:(void(^)(NSArray* venues))completion;
 
 @end
