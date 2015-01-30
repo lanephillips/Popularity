@@ -71,6 +71,8 @@
     }
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGContextSaveGState(ctx);
+    
     // flip y
     CGContextTranslateCTM(ctx, 0, CGRectGetHeight(self.bounds));
     CGContextScaleCTM(ctx, 1, -1);
@@ -78,22 +80,42 @@
         CGContextTranslateCTM(ctx, CGRectGetWidth(self.bounds), 0);
         CGContextScaleCTM(ctx, -1, 1);
     }
-    
     // tallest bar will be drawn as 1 x maxBar and will render as barWidth x widget height
-    CGContextScaleCTM(ctx, self.barWidth, CGRectGetHeight(self.bounds) / maxBar);
+    // 0 bar will be 8 pts tall
+    CGFloat yScale = (CGRectGetHeight(self.bounds) - 8) / maxBar;
+    CGFloat zeroHeight = 8 / yScale;
+    CGContextScaleCTM(ctx, self.barWidth, yScale);
+    
+    // also draw an outline path to make bars more visible
+    CGMutablePathRef path = CGPathCreateMutable();
     
     CGFloat x = 0;
+    CGPathMoveToPoint(path, 0, x, 0);
     for (id<Bar> bar in self.bars) {
-        CGFloat intensity = [bar barColor];
+        CGFloat y = [bar barHeight] + zeroHeight;
         
+        CGFloat intensity = [bar barColor];
         // TODO: or maybe I want a gradient that is the same for every bar
         UIColor* c = [self interpolateColor:intensity];
         
         CGContextSetFillColorWithColor(ctx, c.CGColor);
-        CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, [bar barHeight]));  // slightly wide so there are no gaps
-        
+        // slightly wide so there are no gaps
+        CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, y));
+
+        CGPathAddLineToPoint(path, 0, x, y);
         x += 1;
+        CGPathAddLineToPoint(path, 0, x, y);
     }
+    
+    CGContextAddPath(ctx, path);
+    // restore transform or line width will be too wide
+    CGContextRestoreGState(ctx);
+
+    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+    CGContextSetLineWidth(ctx, 0.5);
+    CGContextSetLineJoin(ctx, kCGLineJoinBevel);
+    CGContextStrokePath(ctx);
+    CGPathRelease(path);
 }
 
 - (UIColor*)nearestColor:(CGFloat)c {
