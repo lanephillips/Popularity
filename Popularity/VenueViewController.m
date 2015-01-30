@@ -17,6 +17,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *venueLbl;
 @property (weak, nonatomic) IBOutlet UILabel *checkinLbl;
+@property (weak, nonatomic) IBOutlet UILabel *percentileLbl;
 @property (weak, nonatomic) IBOutlet UITextView *debugTextView;
 @property (weak, nonatomic) IBOutlet BarChartView *barChart;
 
@@ -38,21 +39,18 @@
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:animated];
     self.venueLbl.text = self.venue.name;
-    self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
     self.debugTextView.text = @"";
 
     self.stats = [VenueStats statsForVenue:self.venue];
-    self.barChart.bars = self.stats.hours;
     
     self.postsObserver = [[NSNotificationCenter defaultCenter] addObserverForName:PostsReceivedNotification
                                                                            object:nil
                                                                             queue:[NSOperationQueue mainQueue]
                                                                        usingBlock:^(NSNotification *note)
                           {
-                              NSLog(@"got more");
+                              //NSLog(@"got more");
                               self.stats = [VenueStats statsForVenue:self.venue];
-                              self.barChart.bars = self.stats.hours;
                           }];
 }
 
@@ -72,6 +70,22 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)setStats:(VenueStats *)stats {
+    _stats = stats;
+    self.barChart.bars = stats.hours;
+    
+    NSMutableString* checkinText = [NSMutableString string];
+    if (self.venue.currentFoursquare.integerValue >= 0) {
+        [checkinText appendFormat:@"%@ Foursquare checkins\n", self.venue.currentFoursquare];
+    }
+    
+    Hour* lastHour = stats.hours.firstObject;
+    [checkinText appendFormat:@"%lu recent posts on Instagram and Twitter", (unsigned long)lastHour.postsCount];
+    self.checkinLbl.text = checkinText;
+    
+    self.percentileLbl.text = [NSString stringWithFormat:@"%.0f%%", lastHour.percentile];
 }
 
 @end

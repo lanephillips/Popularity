@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2T0-Y4-uPI">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
@@ -78,20 +79,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fW0-kC-iI2">
-                                <rect key="frame" x="16" y="72" width="104" height="47"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="39"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Venue" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fW0-kC-iI2">
+                                <rect key="frame" x="16" y="72" width="568" height="48"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="40"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DML-g4-Ctg">
-                                <rect key="frame" x="16" y="127" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DML-g4-Ctg">
+                                <rect key="frame" x="16" y="128" width="568" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw9-bp-Ck9">
-                                <rect key="frame" x="16" y="156" width="568" height="428"/>
+                                <rect key="frame" x="16" y="201" width="568" height="383"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -107,27 +108,47 @@
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="reverseDirection" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="60%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUs-Qd-wkx">
+                                <rect key="frame" x="16" y="157" width="61" height="36"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="of the week this place is less busy." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e5D-rR-Kkd">
+                                <rect key="frame" x="79" y="170" width="505" height="21"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="Gw9-bp-Ck9" secondAttribute="trailing" constant="16" id="3Oy-hl-iFm"/>
                             <constraint firstItem="DML-g4-Ctg" firstAttribute="top" secondItem="fW0-kC-iI2" secondAttribute="bottom" constant="8" id="5wL-Ub-enb"/>
+                            <constraint firstItem="IUs-Qd-wkx" firstAttribute="top" secondItem="DML-g4-Ctg" secondAttribute="bottom" constant="8" id="8VN-zZ-Mdk"/>
                             <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" constant="16" id="97I-iR-nfY"/>
-                            <constraint firstItem="Gw9-bp-Ck9" firstAttribute="top" secondItem="DML-g4-Ctg" secondAttribute="bottom" constant="8" id="Aun-1L-vCZ"/>
+                            <constraint firstItem="e5D-rR-Kkd" firstAttribute="baseline" secondItem="IUs-Qd-wkx" secondAttribute="baseline" id="FBD-5m-OCY"/>
                             <constraint firstItem="Gw9-bp-Ck9" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="FMW-y5-2dF"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="DML-g4-Ctg" secondAttribute="trailing" id="JeO-jD-MaC"/>
                             <constraint firstAttribute="trailing" secondItem="yP1-TJ-Wfg" secondAttribute="trailing" id="KRx-5z-0fi"/>
                             <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="yP1-TJ-Wfg" secondAttribute="bottom" id="MDT-W8-XNN"/>
+                            <constraint firstItem="IUs-Qd-wkx" firstAttribute="leading" secondItem="DML-g4-Ctg" secondAttribute="leading" id="QxI-g0-3wr"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fW0-kC-iI2" secondAttribute="trailing" id="SRA-Bh-s2Q"/>
+                            <constraint firstItem="e5D-rR-Kkd" firstAttribute="leading" secondItem="IUs-Qd-wkx" secondAttribute="trailing" constant="2" id="alx-Wp-U5D"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="e5D-rR-Kkd" secondAttribute="trailing" id="cxL-OC-FUp"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="h1G-Si-X32"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="leading" secondItem="DML-g4-Ctg" secondAttribute="leading" id="kba-Ri-zlV"/>
                             <constraint firstItem="yP1-TJ-Wfg" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" id="qCD-Uo-R4u"/>
                             <constraint firstItem="yP1-TJ-Wfg" firstAttribute="height" secondItem="x8R-iX-fm8" secondAttribute="height" multiplier="1/3" id="vWw-kU-VXl"/>
                             <constraint firstItem="fW0-kC-iI2" firstAttribute="top" secondItem="wCG-c8-UZ2" secondAttribute="bottom" constant="8" id="zI0-kO-9Ah"/>
+                            <constraint firstItem="Gw9-bp-Ck9" firstAttribute="top" secondItem="IUs-Qd-wkx" secondAttribute="bottom" constant="8" id="zz9-Vj-WIq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="barChart" destination="yP1-TJ-Wfg" id="vm3-yf-aCW"/>
                         <outlet property="checkinLbl" destination="DML-g4-Ctg" id="c4x-5n-wLJ"/>
                         <outlet property="debugTextView" destination="Gw9-bp-Ck9" id="05c-Sq-mLm"/>
+                        <outlet property="percentileLbl" destination="IUs-Qd-wkx" id="cJ8-Un-plC"/>
                         <outlet property="venueLbl" destination="fW0-kC-iI2" id="GK1-13-g3n"/>
                     </connections>
                 </viewController>
