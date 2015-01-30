@@ -85,6 +85,7 @@ static const NSString* ClientID = @"645221ed88c34da2bea9cae2bce61904";
         NSEntityDescription* ed = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:APP.managedObjectContext];
         p = [[Post alloc] initWithEntity:ed insertIntoManagedObjectContext:APP.managedObjectContext];
     }
+    [venue addPostsObject:p];
     
     p.instagramId = post[@"id"];
     if (post[@"caption"] && [post[@"caption"] isKindOfClass:[NSDictionary class]]) {

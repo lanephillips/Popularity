@@ -121,6 +121,7 @@
         NSEntityDescription* ed = [NSEntityDescription entityForName:@"Post" inManagedObjectContext:APP.managedObjectContext];
         p = [[Post alloc] initWithEntity:ed insertIntoManagedObjectContext:APP.managedObjectContext];
     }
+    [venue addPostsObject:p];
     
     p.twitterId = tweet[@"id_str"];
     p.text = tweet[@"text"];

@@ -16,7 +16,7 @@
         <attribute name="longitude" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="yelpId" optional="YES" attributeType="String" indexed="YES" syncable="YES"/>
-        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Post" inverseName="venues" inverseEntity="Post" syncable="YES"/>
+        <relationship name="posts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Post" inverseName="venues" inverseEntity="Post" syncable="YES"/>
     </entity>
     <elements>
         <element name="Venue" positionX="0" positionY="0" width="128" height="148"/>

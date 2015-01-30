@@ -43,9 +43,9 @@
 		3D3FBC0B1A784682001B3852 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D3FBC0A1A784682001B3852 /* Crashlytics.framework */; };
 		3DBA5BA31A79A107004196AB /* Instagram.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA21A79A107004196AB /* Instagram.m */; };
 		3DBA5BA61A79A601004196AB /* PTwitter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BA51A79A600004196AB /* PTwitter.m */; };
-		3DBA5BAC1A79CDAD004196AB /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BAB1A79CDAD004196AB /* Post.m */; };
-		3DBA5BAF1A79CDE7004196AB /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BAE1A79CDE7004196AB /* Venue.m */; };
 		3DBA5BB51A7A8B62004196AB /* BarChartView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BB41A7A8B62004196AB /* BarChartView.m */; };
+		3DBA5BBB1A7B3404004196AB /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BBA1A7B3404004196AB /* Post.m */; };
+		3DBA5BBE1A7B3404004196AB /* Venue.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DBA5BBD1A7B3404004196AB /* Venue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,12 +126,12 @@
 		3DBA5BA21A79A107004196AB /* Instagram.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instagram.m; sourceTree = "<group>"; };
 		3DBA5BA41A79A600004196AB /* PTwitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PTwitter.h; sourceTree = "<group>"; };
 		3DBA5BA51A79A600004196AB /* PTwitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PTwitter.m; sourceTree = "<group>"; };
-		3DBA5BAA1A79CDAD004196AB /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
-		3DBA5BAB1A79CDAD004196AB /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
-		3DBA5BAD1A79CDE7004196AB /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
-		3DBA5BAE1A79CDE7004196AB /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 		3DBA5BB31A7A8B62004196AB /* BarChartView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BarChartView.h; sourceTree = "<group>"; };
 		3DBA5BB41A7A8B62004196AB /* BarChartView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BarChartView.m; sourceTree = "<group>"; };
+		3DBA5BB91A7B3404004196AB /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		3DBA5BBA1A7B3404004196AB /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
+		3DBA5BBC1A7B3404004196AB /* Venue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Venue.h; sourceTree = "<group>"; };
+		3DBA5BBD1A7B3404004196AB /* Venue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Venue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,11 +322,11 @@
 		3DBA5BA01A79A0D6004196AB /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
+				3DBA5BBC1A7B3404004196AB /* Venue.h */,
+				3DBA5BBD1A7B3404004196AB /* Venue.m */,
+				3DBA5BB91A7B3404004196AB /* Post.h */,
+				3DBA5BBA1A7B3404004196AB /* Post.m */,
 				3D3FBB941A743052001B3852 /* Popularity.xcdatamodeld */,
-				3DBA5BAA1A79CDAD004196AB /* Post.h */,
-				3DBA5BAB1A79CDAD004196AB /* Post.m */,
-				3DBA5BAD1A79CDE7004196AB /* Venue.h */,
-				3DBA5BAE1A79CDE7004196AB /* Venue.m */,
 			);
 			name = "Data Model";
 			sourceTree = "<group>";
@@ -473,7 +473,6 @@
 				3D3FBB901A743052001B3852 /* main.m in Sources */,
 				3D3FBBFE1A783462001B3852 /* OAToken.m in Sources */,
 				3D3FBB991A743052001B3852 /* ViewController.m in Sources */,
-				3DBA5BAF1A79CDE7004196AB /* Venue.m in Sources */,
 				3D3FBBF11A783462001B3852 /* NSURL+Base.m in Sources */,
 				3D3FBBC41A74AC76001B3852 /* Foursquare.m in Sources */,
 				3D3FBBFD1A783462001B3852 /* OAServiceTicket.m in Sources */,
@@ -489,11 +488,12 @@
 				3D3FBBFB1A783462001B3852 /* OAProblem.m in Sources */,
 				3D3FBBFF1A783462001B3852 /* OATokenManager.m in Sources */,
 				3D3FBBEF1A783462001B3852 /* NSMutableURLRequest+Parameters.m in Sources */,
+				3DBA5BBB1A7B3404004196AB /* Post.m in Sources */,
 				3D3FBBC71A77312C001B3852 /* Yelp.m in Sources */,
 				3D3FBBF51A783462001B3852 /* OACall.m in Sources */,
+				3DBA5BBE1A7B3404004196AB /* Venue.m in Sources */,
 				3D3FBBFA1A783462001B3852 /* OAPlaintextSignatureProvider.m in Sources */,
 				3DBA5BB51A7A8B62004196AB /* BarChartView.m in Sources */,
-				3DBA5BAC1A79CDAD004196AB /* Post.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
