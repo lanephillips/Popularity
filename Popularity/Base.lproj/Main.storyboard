@@ -91,16 +91,16 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw9-bp-Ck9">
-                                <rect key="frame" x="16" y="201" width="568" height="383"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw9-bp-Ck9">
+                                <rect key="frame" x="16" y="201" width="568" height="399"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-TJ-Wfg" customClass="BarChartView">
+                            <view opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yP1-TJ-Wfg" customClass="BarChartView">
                                 <rect key="frame" x="0.0" y="400" width="600" height="200"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="1" alpha="0.75" colorSpace="calibratedWhite"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="barWidth">
                                         <real key="value" value="3"/>
@@ -126,7 +126,7 @@
                             <constraint firstAttribute="trailing" secondItem="Gw9-bp-Ck9" secondAttribute="trailing" constant="16" id="3Oy-hl-iFm"/>
                             <constraint firstItem="DML-g4-Ctg" firstAttribute="top" secondItem="fW0-kC-iI2" secondAttribute="bottom" constant="8" id="5wL-Ub-enb"/>
                             <constraint firstItem="IUs-Qd-wkx" firstAttribute="top" secondItem="DML-g4-Ctg" secondAttribute="bottom" constant="8" id="8VN-zZ-Mdk"/>
-                            <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" constant="16" id="97I-iR-nfY"/>
+                            <constraint firstItem="ImX-wp-hUW" firstAttribute="top" secondItem="Gw9-bp-Ck9" secondAttribute="bottom" id="97I-iR-nfY"/>
                             <constraint firstItem="e5D-rR-Kkd" firstAttribute="baseline" secondItem="IUs-Qd-wkx" secondAttribute="baseline" id="FBD-5m-OCY"/>
                             <constraint firstItem="Gw9-bp-Ck9" firstAttribute="leading" secondItem="x8R-iX-fm8" secondAttribute="leading" constant="16" id="FMW-y5-2dF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="DML-g4-Ctg" secondAttribute="trailing" id="JeO-jD-MaC"/>

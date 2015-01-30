@@ -43,6 +43,7 @@
     self.debugTextView.text = @"";
 
     self.stats = [VenueStats statsForVenue:self.venue];
+    [self showAllPosts];
     
     self.postsObserver = [[NSNotificationCenter defaultCenter] addObserverForName:PostsReceivedNotification
                                                                            object:nil
@@ -51,6 +52,7 @@
                           {
                               //NSLog(@"got more");
                               self.stats = [VenueStats statsForVenue:self.venue];
+                              [self showAllPosts];
                           }];
 }
 
@@ -63,8 +65,11 @@
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     
+    // bar width is constant so the whole week fits in the longer dimension
     CGFloat longer = MAX(CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds));
     self.barChart.barWidth = longer / self.barChart.bars.count;
+    
+//    self.debugTextView.contentInset = UIEdgeInsetsMake(0, 0, CGRectGetHeight(self.barChart.bounds), 0);
 }
 
 - (void)didReceiveMemoryWarning {
@@ -86,6 +91,20 @@
     self.checkinLbl.text = checkinText;
     
     self.percentileLbl.text = [NSString stringWithFormat:@"%.0f%%", lastHour.percentile];
+}
+
+- (void)showAllPosts {
+    NSArray* allPosts = [[self.venue.posts allObjects] sortedArrayUsingComparator:^NSComparisonResult(Post* obj1, Post* obj2) {
+        return [obj2.date compare:obj1.date];   // newest first
+    }];
+    
+    NSMutableString* s = [NSMutableString string];
+    for (Post* p in allPosts) {
+        if (p.text.length > 0) {
+            [s appendFormat:@"%@\n\n", p.text];
+        }
+    }
+    self.debugTextView.text = s;
 }
 
 @end
