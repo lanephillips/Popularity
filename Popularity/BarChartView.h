@@ -13,9 +13,8 @@ IB_DESIGNABLE
 
 @property (nonatomic) IBInspectable CGFloat barWidth;
 
+// elements are assumed to implement floatValue
 @property (nonatomic) NSArray* bars;
-// maps bar values to [0, 1]
-@property (nonatomic,copy) CGFloat (^transferFunction)(CGFloat x);
 
 @property (nonatomic) NSArray* colorScale;
 

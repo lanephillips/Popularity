@@ -1,5 +1,5 @@
 //
-//  BusinessViewController.m
+//  VenueViewController.m
 //  Popularity
 //
 //  Created by Lane Phillips on 1/24/15.
@@ -12,6 +12,7 @@
 #import "Instagram.h"
 #import "Post.h"
 #import "BarChartView.h"
+#import "VenueStats.h"
 
 @interface VenueViewController ()
 
@@ -19,6 +20,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *checkinLbl;
 @property (weak, nonatomic) IBOutlet UITextView *debugTextView;
 @property (weak, nonatomic) IBOutlet BarChartView *barChart;
+
+@property (nonatomic) VenueStats* stats;
 
 @end
 
@@ -37,13 +40,14 @@
     self.venueLbl.text = self.venue.name;
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
+    void (^getPostsBlock)(NSArray*) = ^(NSArray* posts) {
+        self.stats = [VenueStats statsForVenue:self.venue];
+        self.barChart.bars = self.stats.hours;
+    };
+    
     self.debugTextView.text = @"";
-    [[PTwitter shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
-        [self analyzePosts];
-    }];
-    [[Instagram shared] getPostsNearVenue:self.venue completion:^(NSArray *posts) {
-        [self analyzePosts];
-    }];
+    [[PTwitter shared] getPostsNearVenue:self.venue completion:getPostsBlock];
+    [[Instagram shared] getPostsNearVenue:self.venue completion:getPostsBlock];
 }
 
 - (void)viewDidLayoutSubviews {
@@ -56,37 +60,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)analyzePosts {
-    // count posts in hour buckets
-    NSMutableArray* buckets = [NSMutableArray arrayWithCapacity:7 * 24];
-    NSDate* end = [NSDate date];
-    for (NSInteger h = 0; h < 7 * 24; h++) {
-        NSDate* begin = [NSDate dateWithTimeInterval:-60 * 60 sinceDate:end];
-        [buckets addObject:@([self countPostsBetween:begin and:end])];
-        end = begin;
-    }
-    self.barChart.bars = buckets;
-    
-//    NSMutableString* s = [NSMutableString string];
-//    for (Post* post in self.venue.posts) {
-//        [s appendFormat:@"%@ %@\n", post.date, post.text];
-//    }
-//    self.debugTextView.text = s;
-}
-
-- (NSUInteger)countPostsBetween:(NSDate*)begin and:(NSDate*)end {
-    NSFetchRequest* fr = [NSFetchRequest fetchRequestWithEntityName:@"Post"];
-    fr.predicate = [NSPredicate predicateWithFormat:@"date >= %@ AND date < %@", begin, end];
-    
-    NSError* err = nil;
-    NSUInteger count = [APP.managedObjectContext countForFetchRequest:fr error:&err];
-    if (count == NSNotFound) {
-        NSLog(@"%@", err);
-        count = 0;
-    }
-    return count;
 }
 
 @end

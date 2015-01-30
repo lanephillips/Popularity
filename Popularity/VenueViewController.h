@@ -1,5 +1,5 @@
 //
-//  BusinessViewController.h
+//  VenueViewController.h
 //  Popularity
 //
 //  Created by Lane Phillips on 1/24/15.

@@ -66,8 +66,8 @@
 
 - (void)drawRect:(CGRect)rect {
     CGFloat maxBar = 0;
-    for (NSNumber* bar in self.bars) {
-        maxBar = MAX(maxBar, bar.floatValue);
+    for (id bar in self.bars) {
+        maxBar = MAX(maxBar, [bar floatValue]);
     }
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -83,17 +83,14 @@
     CGContextScaleCTM(ctx, self.barWidth, CGRectGetHeight(self.bounds) / maxBar);
     
     CGFloat x = 0;
-    for (NSNumber* bar in self.bars) {
-        CGFloat intensity = bar.floatValue / maxBar;
-        if (self.transferFunction) {
-            intensity = self.transferFunction(bar.floatValue);
-        }
+    for (id bar in self.bars) {
+        CGFloat intensity = [bar floatValue] / maxBar;
         
         // TODO: or maybe I want a gradient that is the same for every bar
         UIColor* c = [self interpolateColor:intensity];
         
         CGContextSetFillColorWithColor(ctx, c.CGColor);
-        CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, bar.floatValue));  // slightly wide so there are no gaps
+        CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, [bar floatValue]));  // slightly wide so there are no gaps
         
         x += 1;
     }
