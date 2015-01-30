@@ -176,12 +176,18 @@ static NSString* const MapLongitudeSpanKey = @"MapLongitudeSpanKey";
     if (!view.rightCalloutAccessoryView) {
         view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     }
+    // TODO: handler could refresh view as info comes in
+    [[ServiceAggregator shared] getPostsNearVenue:(Venue*)view.annotation completion:nil];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    Venue* venue = (Venue*)view.annotation;
-    NSLog(@"%@", venue);
+    //Venue* venue = (Venue*)view.annotation;
+    //NSLog(@"%@", venue);
     [self performSegueWithIdentifier:@"showVenue" sender:self];
+}
+
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+    [[ServiceAggregator shared] cancelPostsRequest:(Venue*)view.annotation];
 }
 
 @end
