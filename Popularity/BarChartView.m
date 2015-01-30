@@ -65,13 +65,17 @@
 }
 
 - (void)drawRect:(CGRect)rect {
+    if (self.bars.count == 0) {
+        return;
+    }
+    
     CGFloat maxBar = 0;
     for (id<Bar> bar in self.bars) {
         maxBar = MAX(maxBar, [bar barHeight]);
     }
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextSaveGState(ctx);
+//    CGContextSaveGState(ctx);
     
     // flip y
     CGContextTranslateCTM(ctx, 0, CGRectGetHeight(self.bounds));
@@ -87,10 +91,10 @@
     CGContextScaleCTM(ctx, self.barWidth, yScale);
     
     // also draw an outline path to make bars more visible
-    CGMutablePathRef path = CGPathCreateMutable();
+//    CGMutablePathRef path = CGPathCreateMutable();
     
     CGFloat x = 0;
-    CGPathMoveToPoint(path, 0, x, 0);
+//    CGPathMoveToPoint(path, 0, x, 0);
     for (id<Bar> bar in self.bars) {
         CGFloat y = [bar barHeight] + zeroHeight;
         
@@ -102,20 +106,20 @@
         // slightly wide so there are no gaps
         CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, y));
 
-        CGPathAddLineToPoint(path, 0, x, y);
+//        CGPathAddLineToPoint(path, 0, x, y);
         x += 1;
-        CGPathAddLineToPoint(path, 0, x, y);
+//        CGPathAddLineToPoint(path, 0, x, y);
     }
     
-    CGContextAddPath(ctx, path);
-    // restore transform or line width will be too wide
-    CGContextRestoreGState(ctx);
-
-    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
-    CGContextSetLineWidth(ctx, 0.5);
-    CGContextSetLineJoin(ctx, kCGLineJoinBevel);
-    CGContextStrokePath(ctx);
-    CGPathRelease(path);
+//    CGContextAddPath(ctx, path);
+//    // restore transform or line width will be too wide
+//    CGContextRestoreGState(ctx);
+//
+//    CGContextSetStrokeColorWithColor(ctx, [UIColor blackColor].CGColor);
+//    CGContextSetLineWidth(ctx, 0.5);
+//    CGContextSetLineJoin(ctx, kCGLineJoinBevel);
+//    CGContextStrokePath(ctx);
+//    CGPathRelease(path);
 }
 
 - (UIColor*)nearestColor:(CGFloat)c {
