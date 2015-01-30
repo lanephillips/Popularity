@@ -29,6 +29,7 @@ static NSString* const MapLongitudeSpanKey = @"MapLongitudeSpanKey";
 @property (weak, nonatomic) IBOutlet MKMapView *map;
 @property (nonatomic) CLLocationManager* locationManager;
 @property (nonatomic) VenuesRequest* venuesRequest;
+@property (nonatomic) PostsRequest* postsRequest;
 
 @end
 
@@ -176,8 +177,9 @@ static NSString* const MapLongitudeSpanKey = @"MapLongitudeSpanKey";
     if (!view.rightCalloutAccessoryView) {
         view.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
     }
-    // TODO: handler could refresh view as info comes in
-    [[ServiceAggregator shared] getPostsNearVenue:(Venue*)view.annotation completion:nil];
+    
+    [self.postsRequest cancel];
+    self.postsRequest = [[ServiceAggregator shared] getPostsNearVenue:(Venue*)view.annotation completion:nil];
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
@@ -187,7 +189,8 @@ static NSString* const MapLongitudeSpanKey = @"MapLongitudeSpanKey";
 }
 
 - (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    [[ServiceAggregator shared] cancelPostsRequest:(Venue*)view.annotation];
+    [self.postsRequest cancel];
+    self.postsRequest = nil;
 }
 
 @end

@@ -46,19 +46,28 @@
     return self;
 }
 
-- (void)getPostsNearVenue:(Venue *)venue completion:(void (^)(NSArray *))completion {
+- (void)getPostsNearVenue:(Venue*)venue query:(NSString*)query radiusK:(float)radiusK
+                  sinceId:(NSString*)sinceId maxId:(NSString*)maxId
+               completion:(void(^)(NSArray* posts))completion {
+
     if (!self.twitterSession) {
         completion(@[]);
         return;
     }
     
     NSString *statusesShowEndpoint = @"https://api.twitter.com/1.1/search/tweets.json";
-    NSDictionary *params = @{
-                             @"q": venue.name,
-                             @"geocode": [NSString stringWithFormat:@"%@,%@,1km", venue.latitude, venue.longitude],
-                             @"result_type": @"recent",
-                             @"count": @"100"
-                             };
+    
+    NSMutableDictionary *params = [ @{@"q": query ?: @"",
+                                      @"geocode": [NSString stringWithFormat:@"%@,%@,%fkm", venue.latitude, venue.longitude, radiusK],
+                                      @"result_type": @"recent",
+                                      @"count": @"100"} mutableCopy];
+    if (sinceId.length > 0) {
+        params[@"since_id"] = sinceId;
+    }
+    if (maxId.length > 0) {
+        params[@"max_id"] = maxId;
+    }
+    
     NSError *clientError;
     NSURLRequest *request = [[[Twitter sharedInstance] APIClient]
                              URLRequestWithMethod:@"GET"

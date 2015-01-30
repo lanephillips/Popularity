@@ -40,14 +40,10 @@
     self.venueLbl.text = self.venue.name;
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
-    void (^getPostsBlock)(NSArray*) = ^(NSArray* posts) {
-        self.stats = [VenueStats statsForVenue:self.venue];
-        self.barChart.bars = self.stats.hours;
-    };
-    
     self.debugTextView.text = @"";
-    [[PTwitter shared] getPostsNearVenue:self.venue completion:getPostsBlock];
-    [[Instagram shared] getPostsNearVenue:self.venue completion:getPostsBlock];
+    // TODO: need some sort of notification system
+    self.stats = [VenueStats statsForVenue:self.venue];
+    self.barChart.bars = self.stats.hours;
 }
 
 - (void)viewDidLayoutSubviews {

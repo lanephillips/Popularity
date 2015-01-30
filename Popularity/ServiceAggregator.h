@@ -16,6 +16,12 @@
 
 @end
 
+@interface PostsRequest : NSObject
+
+- (void)cancel;
+
+@end
+
 @interface ServiceAggregator : NSObject
 
 + (instancetype)shared;
@@ -23,7 +29,6 @@
 // completion handlers may get called more than once
 - (VenuesRequest*)getVenuesInRegion:(MKCoordinateRegion)region completion:(void(^)(NSArray* venues))completion;
 
-- (void)getPostsNearVenue:(Venue*)venue completion:(void(^)(NSArray* posts))completion;
-- (void)cancelPostsRequest:(Venue*)venue;
+- (PostsRequest*)getPostsNearVenue:(Venue*)venue completion:(void(^)(NSArray* posts))completion;
 
 @end

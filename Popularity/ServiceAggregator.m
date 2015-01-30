@@ -12,11 +12,27 @@
 #import "Foursquare.h"
 #import "Yelp.h"
 #import "AppDelegate.h"
+#import "Post.h"
 
 @interface VenuesRequest ()
 
 @property (nonatomic) NSURLSessionDataTask* foursquareTask;
 @property (nonatomic) NSURLSessionDataTask* yelpTask;
+
+@end
+
+@interface PostsRequest ()
+
+@property (nonatomic) Venue* venue;
+@property (nonatomic, copy) void (^completion)(NSArray* posts);
+
+@property (nonatomic) NSMutableArray* gatheredPosts;
+@property (nonatomic) NSDate* oneWeekAgo;
+@property (nonatomic) NSString* sinceTwitterId;
+@property (nonatomic) NSString* maxTwitterId;
+
+- (void)startTwitterSearch;
+- (void)startInstagramSearch;
 
 @end
 
@@ -56,17 +72,104 @@
 }
 
 // TODO: allow nil handler
-- (void)getPostsNearVenue:(Venue *)venue completion:(void (^)(NSArray *))completion {
-    // TODO: starting from most recent tweet or 7 days ago request as many tweets as possible until we get < limit
-    // TODO: ditto for instagram, except I don't know if there is a limit, stop when we get 0
+- (PostsRequest*)getPostsNearVenue:(Venue *)venue completion:(void (^)(NSArray *))completion {
+    PostsRequest* pr = [[PostsRequest alloc] init];
+    pr.venue = venue;
+    pr.completion = completion;
+    [pr startTwitterSearch];
+    [pr startInstagramSearch];
+    return pr;
 }
 
-- (void)cancelPostsRequest:(Venue *)venue {
-    NSMutableArray* tasks = self.venueTasks[[self venueKey:venue]];
-    for (NSURLSessionDataTask* task in tasks) {
-        [task cancel];
+@end
+
+@implementation VenuesRequest
+
+- (void)cancel {
+    [self.foursquareTask cancel];
+    self.foursquareTask = nil;
+    [self.yelpTask cancel];
+    self.yelpTask = nil;
+}
+
+@end
+
+@implementation PostsRequest
+
+- (instancetype)init {
+    self = [super init];
+    if (self) {
+        self.gatheredPosts = [NSMutableArray array];
+        self.oneWeekAgo = [NSDate dateWithTimeIntervalSinceNow:-7 * 24 * 60 * 60];
     }
-    [self.venueTasks removeObjectForKey:[self venueKey:venue]];
+    return self;
+}
+
+- (void)cancel {
+    // doesn't seem to be a way to cancel the twitter requests, zero these out and we'll know not to make more requests
+    self.venue = nil;
+    self.completion = nil;
+}
+
+- (void)startTwitterSearch {
+    // query for nearby tweets going back in time, until previous most recent tweet
+    Post* tweet = [self mostRecentTweetForVenue:self.venue];
+    NSString* sinceId = tweet ? tweet.twitterId : nil;
+    
+    // first find all the tweets within 20 meters of location
+    self.sinceTwitterId = sinceId;
+    self.maxTwitterId = nil;
+    [self runTwitterSearch:@"" radiusK:0.020f completion:^{
+        // now try searching the name of the biz within 1km
+        self.sinceTwitterId = sinceId;
+        self.maxTwitterId = nil;
+        [self runTwitterSearch:self.venue.name radiusK:1 completion:^{
+            if (self.completion) {
+                self.completion(self.gatheredPosts);
+            }
+        }];
+    }];
+}
+
+- (void)startInstagramSearch {
+    // TODO:
+}
+
+- (void)runTwitterSearch:(NSString*)query radiusK:(float)radius completion:(void(^)())completion {
+    [[PTwitter shared] getPostsNearVenue:self.venue
+                                   query:query
+                                 radiusK:radius
+                                 sinceId:self.sinceTwitterId
+                                   maxId:self.maxTwitterId
+                              completion:^(NSArray *posts)
+     {
+         if (!self.venue) {
+             // we were cancelled
+             return;
+         }
+         NSLog(@"q: %@, r: %f, since: %@, max: %@, got %lu tweets", query, radius, self.sinceTwitterId, self.maxTwitterId,
+               (unsigned long)posts.count);
+         
+         // TODO: could be some dupes, problem?
+         [self.gatheredPosts addObjectsFromArray:posts];
+         
+         posts = [posts sortedArrayUsingComparator:^NSComparisonResult(Post* obj1, Post* obj2) {
+             return [obj1.date compare:obj2.date];
+         }];
+         //NSLog(@"%@", posts);
+         Post* earliest = posts.firstObject;
+         
+         if (posts.count < 100 ||
+             [earliest.date compare:self.oneWeekAgo] == NSOrderedAscending) {
+             // either we found all the tweets there is to find, or we've gone back the whole week
+             completion();
+             return;
+         }
+         
+         // get the next batch earlier than these
+         self.maxTwitterId = earliest.twitterId;
+         [self runTwitterSearch:query radiusK:radius completion:completion];
+     }];
 }
 
 - (Post*)mostRecentTweetForVenue:(Venue*)venue {
@@ -97,20 +200,6 @@
         return nil;
     }
     return a.firstObject;
-}
-
-- (NSString*)venueKey:(Venue*)venue {
-    return [NSString stringWithFormat:@"%@::%@", venue.foursquareId, venue.yelpId];
-}
-@end
-
-@implementation VenuesRequest
-
-- (void)cancel {
-    [self.foursquareTask cancel];
-    self.foursquareTask = nil;
-    [self.yelpTask cancel];
-    self.yelpTask = nil;
 }
 
 @end

@@ -13,6 +13,8 @@
 
 + (instancetype)shared;
 
-- (void)getPostsNearVenue:(Venue*)venue completion:(void(^)(NSArray* posts))completion;
+- (void)getPostsNearVenue:(Venue*)venue query:(NSString*)query radiusK:(float)radiusK
+                  sinceId:(NSString*)sinceId maxId:(NSString*)maxId
+               completion:(void(^)(NSArray* posts))completion;
 
 @end
