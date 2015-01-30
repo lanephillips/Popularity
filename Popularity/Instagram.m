@@ -25,12 +25,19 @@ static const NSString* ClientID = @"645221ed88c34da2bea9cae2bce61904";
     return f;
 }
 
-// TODO: instagram supports foursquare ids
-- (void)getPostsNearVenue:(Venue *)venue completion:(void (^)(NSArray *))completion {
-    NSDate* oneWeekAgo = [NSDate dateWithTimeIntervalSinceNow:-7 * 24 * 60 * 60];
-    NSString* urlStr = [NSString stringWithFormat:@"https://api.instagram.com/v1/media/search"
-                        "?client_id=%@&lat=%@&lng=%@&min_timestamp=%llu", ClientID,
-                        venue.latitude, venue.longitude, (UInt64)oneWeekAgo.timeIntervalSince1970];
+- (void)getPostsNearVenue:(Venue*)venue radiusK:(float)radiusK
+                     from:(NSDate*)fromDate to:(NSDate*)toDate
+               completion:(void(^)(NSArray* venues))completion {
+
+    NSMutableString* urlStr = [NSMutableString stringWithFormat:@"https://api.instagram.com/v1/media/search"
+                               "?client_id=%@&lat=%@&lng=%@&distance=%d", ClientID,
+                               venue.latitude, venue.longitude, (UInt32)(1000 * radiusK)];
+    if (fromDate) {
+        [urlStr appendFormat:@"&min_timestamp=%llu", (UInt64)fromDate.timeIntervalSince1970];
+    }
+    if (toDate) {
+        [urlStr appendFormat:@"&max_timestamp=%llu", (UInt64)fromDate.timeIntervalSince1970];
+    }
     
     NSURLSessionDataTask* task = [[NSURLSession sharedSession] dataTaskWithURL:[NSURL URLWithString:urlStr]
                                                              completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
@@ -51,6 +58,7 @@ static const NSString* ClientID = @"645221ed88c34da2bea9cae2bce61904";
                                                                 options:0
                                                                 error:&jsonError];
                                           if (!jsonError) {
+                                              NSLog(@"meta: %@, pagination: %@", json[@"meta"], json[@"pagination"]);
                                               posts = json[@"data"];
                                           }
                                           else {

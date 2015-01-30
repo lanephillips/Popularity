@@ -14,6 +14,10 @@
 #import "AppDelegate.h"
 #import "Post.h"
 
+NSString* const PostsReceivedNotification = @"PostsReceivedNotification";
+NSString* const PostsReceivedVenueKey = @"PostsReceivedVenueKey";
+NSString* const PostsReceivedPostsKey = @"PostsReceivedPostsKey";
+
 @interface VenuesRequest ()
 
 @property (nonatomic) NSURLSessionDataTask* foursquareTask;
@@ -30,6 +34,9 @@
 @property (nonatomic) NSDate* oneWeekAgo;
 @property (nonatomic) NSString* sinceTwitterId;
 @property (nonatomic) NSString* maxTwitterId;
+
+@property (nonatomic) NSDate* minInstagramDate;
+@property (nonatomic) NSDate* maxInstagramDate;
 
 - (void)startTwitterSearch;
 - (void)startInstagramSearch;
@@ -127,12 +134,30 @@
             if (self.completion) {
                 self.completion(self.gatheredPosts);
             }
+            [[NSNotificationCenter defaultCenter] postNotificationName:PostsReceivedNotification
+                                                                object:self
+                                                              userInfo:@{ PostsReceivedVenueKey: self.venue,
+                                                                          PostsReceivedPostsKey: self.gatheredPosts }];
         }];
     }];
 }
 
 - (void)startInstagramSearch {
-    // TODO:
+    // query for nearby media going back in time, until previous most recent media
+    Post* post = [self mostRecentInstagramForVenue:self.venue];
+    self.minInstagramDate = post ? post.date : self.oneWeekAgo;
+    self.maxInstagramDate = nil;
+    
+    // instagram doesn't let us query captions, so just get all posts in 20m radius
+    [self runInstagramSearchRadiusK:0.020f completion:^{
+        if (self.completion) {
+            self.completion(self.gatheredPosts);
+        }
+        [[NSNotificationCenter defaultCenter] postNotificationName:PostsReceivedNotification
+                                                            object:self
+                                                          userInfo:@{ PostsReceivedVenueKey: self.venue,
+                                                                      PostsReceivedPostsKey: self.gatheredPosts }];
+    }];
 }
 
 - (void)runTwitterSearch:(NSString*)query radiusK:(float)radius completion:(void(^)())completion {
@@ -161,7 +186,7 @@
          
          if (posts.count < 100 ||
              [earliest.date compare:self.oneWeekAgo] == NSOrderedAscending) {
-             // either we found all the tweets there is to find, or we've gone back the whole week
+             // either we found all the tweets there are to find, or we've gone back the whole week
              completion();
              return;
          }
@@ -169,6 +194,36 @@
          // get the next batch earlier than these
          self.maxTwitterId = earliest.twitterId;
          [self runTwitterSearch:query radiusK:radius completion:completion];
+     }];
+}
+
+- (void)runInstagramSearchRadiusK:(float)radius completion:(void(^)())completion {
+    [[Instagram shared] getPostsNearVenue:self.venue
+                                  radiusK:radius
+                                     from:self.minInstagramDate
+                                       to:self.maxInstagramDate
+                               completion:^(NSArray *posts)
+     {
+         if (!self.venue) {
+             // we were cancelled
+             return;
+         }
+         NSLog(@"r: %f, from: %@, to: %@, got %lu media", radius, self.minInstagramDate, self.maxInstagramDate,
+               (unsigned long)posts.count);
+         
+         // TODO: could be some dupes, problem?
+         [self.gatheredPosts addObjectsFromArray:posts];
+         
+         posts = [posts sortedArrayUsingComparator:^NSComparisonResult(Post* obj1, Post* obj2) {
+             return [obj1.date compare:obj2.date];
+         }];
+         //NSLog(@"%@", posts);
+         Post* earliest = posts.firstObject;
+         Post* latest = posts.lastObject;
+         NSLog(@"earliest: %@, latest: %@", earliest.date, latest.date);
+         
+         // I haven't seen Instagram paginate these results, so we're done
+         completion();
      }];
 }
 

@@ -10,6 +10,10 @@
 @import MapKit;
 #import "Venue.h"
 
+extern NSString* const PostsReceivedNotification;
+extern NSString* const PostsReceivedVenueKey;
+extern NSString* const PostsReceivedPostsKey;
+
 @interface VenuesRequest : NSObject
 
 - (void)cancel;

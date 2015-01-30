@@ -8,8 +8,7 @@
 
 #import "VenueViewController.h"
 #import "AppDelegate.h"
-#import "PTwitter.h"
-#import "Instagram.h"
+#import "ServiceAggregator.h"
 #import "Post.h"
 #import "BarChartView.h"
 #import "VenueStats.h"
@@ -22,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet BarChartView *barChart;
 
 @property (nonatomic) VenueStats* stats;
+@property (nonatomic) id postsObserver;
 
 @end
 
@@ -41,9 +41,25 @@
     self.checkinLbl.text = [NSString stringWithFormat:@"%@ checkins", self.venue.currentFoursquare];
     
     self.debugTextView.text = @"";
-    // TODO: need some sort of notification system
+
     self.stats = [VenueStats statsForVenue:self.venue];
     self.barChart.bars = self.stats.hours;
+    
+    self.postsObserver = [[NSNotificationCenter defaultCenter] addObserverForName:PostsReceivedNotification
+                                                                           object:nil
+                                                                            queue:[NSOperationQueue mainQueue]
+                                                                       usingBlock:^(NSNotification *note)
+                          {
+                              NSLog(@"got more");
+                              self.stats = [VenueStats statsForVenue:self.venue];
+                              self.barChart.bars = self.stats.hours;
+                          }];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [[NSNotificationCenter defaultCenter] removeObserver:self.postsObserver];
+    self.postsObserver = nil;
+    [super viewWillDisappear:animated];
 }
 
 - (void)viewDidLayoutSubviews {

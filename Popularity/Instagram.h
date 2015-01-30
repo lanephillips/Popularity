@@ -13,6 +13,8 @@
 
 + (instancetype)shared;
 
-- (void)getPostsNearVenue:(Venue*)venue completion:(void(^)(NSArray* venues))completion;
+- (void)getPostsNearVenue:(Venue*)venue radiusK:(float)radiusK
+                     from:(NSDate*)fromDate to:(NSDate*)toDate
+               completion:(void(^)(NSArray* venues))completion;
 
 @end
