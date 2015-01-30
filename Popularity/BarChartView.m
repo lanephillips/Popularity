@@ -47,11 +47,11 @@
 }
 
 - (void)prepareForInterfaceBuilder {
-    NSMutableArray* random = [NSMutableArray array];
-    for (NSInteger i = 0; i < 7 * 24; i++) {
-        [random addObject:@(i + arc4random_uniform(6))];
-    }
-    self.bars = random;
+//    NSMutableArray* random = [NSMutableArray array];
+//    for (NSInteger i = 0; i < 7 * 24; i++) {
+//        [random addObject:@(i + arc4random_uniform(6))];
+//    }
+//    self.bars = random;
 }
 
 - (void)setBarWidth:(CGFloat)barWidth {
@@ -66,8 +66,8 @@
 
 - (void)drawRect:(CGRect)rect {
     CGFloat maxBar = 0;
-    for (id bar in self.bars) {
-        maxBar = MAX(maxBar, [bar floatValue]);
+    for (id<Bar> bar in self.bars) {
+        maxBar = MAX(maxBar, [bar barHeight]);
     }
     
     CGContextRef ctx = UIGraphicsGetCurrentContext();
@@ -83,14 +83,14 @@
     CGContextScaleCTM(ctx, self.barWidth, CGRectGetHeight(self.bounds) / maxBar);
     
     CGFloat x = 0;
-    for (id bar in self.bars) {
-        CGFloat intensity = [bar floatValue] / maxBar;
+    for (id<Bar> bar in self.bars) {
+        CGFloat intensity = [bar barColor];
         
         // TODO: or maybe I want a gradient that is the same for every bar
         UIColor* c = [self interpolateColor:intensity];
         
         CGContextSetFillColorWithColor(ctx, c.CGColor);
-        CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, [bar floatValue]));  // slightly wide so there are no gaps
+        CGContextFillRect(ctx, CGRectMake(x, 0, 1.1, [bar barHeight]));  // slightly wide so there are no gaps
         
         x += 1;
     }

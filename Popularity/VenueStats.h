@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Venue.h"
 #import "Post.h"
+#import "BarChartView.h"
 
-@interface Hour : NSObject
+@interface Hour : NSObject<Bar>
 
 @property (nonatomic) NSDate* start;
 @property (nonatomic) NSUInteger postsCount;
 @property (nonatomic) float percentile;
-
-// returns postsCount for plotting in bar chart
-- (float)floatValue;
 
 @end
 

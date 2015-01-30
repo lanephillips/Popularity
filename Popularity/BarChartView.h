@@ -1,5 +1,5 @@
 //
-//  BarCharView.h
+//  BarChartView.h
 //  Popularity
 //
 //  Created by Lane Phillips on 1/29/15.
@@ -8,12 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol Bar <NSObject>
+
+- (float)barHeight;
+- (float)barColor;  // [0, 1]
+
+@end
+
 IB_DESIGNABLE
 @interface BarChartView : UIView
 
 @property (nonatomic) IBInspectable CGFloat barWidth;
 
-// elements are assumed to implement floatValue
+// elements must implement Bar
 @property (nonatomic) NSArray* bars;
 
 @property (nonatomic) NSArray* colorScale;

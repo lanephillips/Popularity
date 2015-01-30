@@ -29,8 +29,30 @@
         [self.hours addObject:hour];
         end = hour.start;
     }
+
+    NSArray* sorted = [self.hours sortedArrayUsingComparator:^NSComparisonResult(Hour* obj1, Hour* obj2) {
+        if (obj1.postsCount < obj2.postsCount) {
+            return NSOrderedAscending;
+        }
+        if (obj1.postsCount > obj2.postsCount) {
+            return NSOrderedDescending;
+        }
+        return NSOrderedSame;
+    }];
     
-    // TODO: stats
+    // for each hour count the number of hours with less activity
+    NSUInteger lessCount = 0;
+    NSUInteger sameCount = 0;
+    NSUInteger sameLevel = 0;
+    for (Hour* h in sorted) {
+        if (h.postsCount > sameLevel) {
+            lessCount += sameCount;
+            sameLevel = h.postsCount;
+            sameCount = 0;
+        }
+        sameCount++;
+        h.percentile = lessCount / (float)sorted.count;
+    }
 }
 
 - (NSUInteger)countPostsForVenue:(Venue*)venue from:(NSDate*)begin to:(NSDate*)end {
@@ -50,8 +72,12 @@
 
 @implementation Hour
 
-- (float)floatValue {
+- (float)barHeight {
     return self.postsCount;
+}
+
+- (float)barColor {
+    return self.percentile;
 }
 
 @end
